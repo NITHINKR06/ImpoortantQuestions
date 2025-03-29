@@ -13,22 +13,21 @@ const Navbar = () => {
   };
   const pathname = usePathname();
 
-  // Navigation links; FCN and MES include sub-pages
+  // Navigation links; FCN and SEPM include sub-pages
   const navLinks = [
     { name: 'Home', href: '/' },
     {
       name: 'FCN',
       dropdown: [
-        { name: 'Important 1', href: '/' },
+        { name: 'Part 1', href: '/mse2/fcn' },
       ],
     },
     {
       name: 'SEPM',
       dropdown: [
-        { name: 'Important 1', href: '/mse2/mes' },
+        { name: 'Part 1', href: '/mse2/sepm' },
       ],
     },
-    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -51,8 +50,8 @@ const Navbar = () => {
           </div>
           {/* Full-Screen Blurred Overlay with Mobile Dropdown Menu */}
           {isOpen && (
-            <div className="fixed inset-0 z-50 backdrop-blur-md">
-              <div className="absolute top-10 left-0 right-0 bg-gray-500 bg-opacity-70 p-4 rounded-2xl m-2">
+            <div className="fixed inset-0 z-50 backdrop-blur-md flex justify-center items-start pt-10">
+              <div className="w-full max-w-md bg-gray-500 bg-opacity-70 p-4 rounded-2xl m-4">
                 <div className="flex justify-end">
                   <button onClick={closeMenu} className="text-white focus:outline-none">
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,10 +59,10 @@ const Navbar = () => {
                     </svg>
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <h1 className="text-white text-2xl">Important Questions</h1>
                 </div>
-                <ul className="mt-2 space-y-2">
+                <ul className="space-y-4">
                   {navLinks.map((link) => (
                     <li key={link.name}>
                       {link.dropdown ? (
@@ -91,7 +90,7 @@ const Navbar = () => {
                             </svg>
                           </button>
                           {mobileOpenDropdown === link.name && (
-                            <ul className="ml-4 space-y-1">
+                            <ul className="ml-4 space-y-2">
                               {link.dropdown.map((item) => (
                                 <li key={item.href}>
                                   <Link href={item.href} legacyBehavior>

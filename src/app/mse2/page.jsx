@@ -1,10 +1,10 @@
 import React from 'react'
-import FSN from './fcn/page'
+import FSN from './fcn/Imp1'
 
 export default function MsePage() {
   return (
     <div>
-        <FSN/>
+        ................................
     </div>
   )
 }

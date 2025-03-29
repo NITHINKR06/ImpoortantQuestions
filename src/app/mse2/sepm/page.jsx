@@ -1,8 +1,9 @@
 'use client'
 import React, { useState } from 'react';
-import Imp1 from './imp1.js';
-import Imp2 from './imp2.js';
-import Imp3 from './imp3.js';
+import Imp1 from './Imp1.jsx';
+import Imp2 from './Imp2.jsx';
+import Imp3 from './Imp3.jsx';
+
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -38,8 +39,11 @@ const SEPMImportantQuestions = () => {
       <header className="text-black py-6 shadow-md">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-4xl font-extrabold tracking-wide">
-            MES Important Questions
+            SEPM Important Questions
           </h1>
+          <p className="mt-2 text-lg opacity-90 pb-5">
+            In-depth answers on Context Modeling, Diagrams, Agile, XP, TDD, and Testing Models
+          </p>
 
           {/* Buttons to switch between pages */}
           <div className="mb-6">
