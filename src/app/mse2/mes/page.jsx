@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import Imp1 from './imp1.js';
-import Imp2 from './imp2.js';
-import Imp3 from './imp3.js';
+// import Imp1 from './Imp1.js';
+// import Imp2 from './Imp2.js';
+// import Imp3 from './Imp3.js';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -12,13 +12,13 @@ const SEPMImportantQuestions = () => {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "imp1":
-        return <Imp1 />;
-      case "imp2":
-        return <Imp2 />;
-      case "imp3":
-        return <Imp3 />;
+        return '<Imp1 />';
+      // case "imp2":
+      //   return <Imp2 />;
+      // case "imp3":
+      //   return <Imp3 />;
       default:
-        return <Imp1 />;
+        return "<Imp1 />";
     }
   };
 
