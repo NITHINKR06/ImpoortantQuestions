@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-// import Imp1 from './Imp1.js';
-// import Imp2 from './Imp2.js';
-// import Imp3 from './Imp3.js';
+import Imp1 from './Imp1.jsx';
+import Imp2 from './Imp2.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -12,13 +11,13 @@ const SEPMImportantQuestions = () => {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "imp1":
-        return '<Imp1 />';
-      // case "imp2":
-      //   return <Imp2 />;
+        return <Imp1 />;
+      case "imp2":
+        return <Imp2 />;
       // case "imp3":
       //   return <Imp3 />;
       default:
-        return "<Imp1 />";
+        return <Imp1 />;
     }
   };
 
@@ -55,12 +54,12 @@ const SEPMImportantQuestions = () => {
             >
               Important 2
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}
             >
               Important 3
-            </button>
+            </button> */}
           </div>
         </div>
       </header>
@@ -69,7 +68,7 @@ const SEPMImportantQuestions = () => {
       <div className="max-w-6xl mx-auto px-6 py-10">
         {renderActiveComponent()}
       </div>
-      
+
       {/* <footer className="bg-gray-800 text-gray-300 py-4 mt-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-sm">&copy; 2025 SEPM Documentation. All rights reserved.</p>

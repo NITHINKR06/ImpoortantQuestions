@@ -1,8 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-// import Imp1 from './Imp1.js';
-// import Imp2 from './Imp2.js';
-// import Imp3 from './Imp3.js';
+import Imp1 from './Imp1.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -12,13 +10,13 @@ const SEPMImportantQuestions = () => {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "imp1":
-        return '<Imp1 />';
+        return <Imp1 />;
       // case "imp2":
       //   return <Imp2 />;
       // case "imp3":
       //   return <Imp3 />;
       default:
-        return "<Imp1 />";
+        return <Imp1 />;
     }
   };
 
@@ -49,7 +47,7 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
@@ -60,7 +58,7 @@ const SEPMImportantQuestions = () => {
               onClick={() => setActiveComponent("imp3")}
             >
               Important 3
-            </button>
+            </button> */}
           </div>
         </div>
       </header>
