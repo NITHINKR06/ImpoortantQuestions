@@ -13,7 +13,7 @@ const Navbar = () => {
   };
   const pathname = usePathname();
 
-  // Navigation links; FCN and SEPM include sub-pages
+  // Navigation links; FCN, MES, DAA, SEPM include sub-pages
   const navLinks = [
     { name: 'Home', href: '/' },
     {
@@ -29,11 +29,11 @@ const Navbar = () => {
       ],
     },
     {
-        name: 'DAA',
-        dropdown: [
-          { name: 'Part 1', href: '/mse2/daa' },
-        ],
-      },
+      name: 'DAA',
+      dropdown: [
+        { name: 'Part 1', href: '/mse2/daa' },
+      ],
+    },
     {
       name: 'SEPM',
       dropdown: [
@@ -55,19 +55,29 @@ const Navbar = () => {
             <div className="md:hidden">
               <button onClick={() => setIsOpen(true)} className="focus:outline-none">
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M4 6h16M4 12h16M4 18h16" 
+                  />
                 </svg>
               </button>
             </div>
           </div>
           {/* Full-Screen Blurred Overlay with Mobile Dropdown Menu */}
           {isOpen && (
-            <div className="fixed inset-0 z-50 backdrop-blur-md flex justify-center items-start pt-10">
+            <div className="fixed inset-0 z-50 backdrop-blur-md flex flex-col justify-center items-center pt-10">
               <div className="w-full max-w-md bg-gray-500 bg-opacity-70 p-4 rounded-2xl m-4">
                 <div className="flex justify-end">
                   <button onClick={closeMenu} className="text-white focus:outline-none">
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M6 18L18 6M6 6l12 12" 
+                      />
                     </svg>
                   </button>
                 </div>
@@ -85,7 +95,7 @@ const Navbar = () => {
                                 mobileOpenDropdown === link.name ? null : link.name
                               )
                             }
-                            className="w-full text-left block px-4 py-2 hover:bg-gray-700 justify-between items-center"
+                            className="w-full flex justify-between items-center text-left px-4 py-2 hover:bg-gray-700"
                           >
                             <span>{link.name}</span>
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,7 +161,12 @@ const Navbar = () => {
                     >
                       {link.name}
                       <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M19 9l-7 7-7-7" 
+                        />
                       </svg>
                     </button>
                     <div className="absolute left-0 mt-2 w-40 rounded-md bg-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
