@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import Imp1 from './Imp1';
-import Imp2 from './Imp2';
-import Imp3 from './Imp3';
+import Imp1 from './imp1.jsx';
+import Imp2 from './imp2.jsx';
+import Imp3 from './imp3.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
