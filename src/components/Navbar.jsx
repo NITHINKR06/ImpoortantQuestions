@@ -23,9 +23,15 @@ const Navbar = () => {
       ],
     },
     {
-        name: 'MES',
+      name: 'MES',
+      dropdown: [
+        { name: 'Part 1', href: '/mse2/mes' },
+      ],
+    },
+    {
+        name: 'DAA',
         dropdown: [
-          { name: 'Part 1', href: '/mse2/mes' },
+          { name: 'Part 1', href: '/mse2/daa' },
         ],
       },
     {
@@ -79,7 +85,7 @@ const Navbar = () => {
                                 mobileOpenDropdown === link.name ? null : link.name
                               )
                             }
-                            className="w-full text-left block px-4 py-2 hover:bg-gray-700 flex justify-between items-center"
+                            className="w-full text-left block px-4 py-2 hover:bg-gray-700 justify-between items-center"
                           >
                             <span>{link.name}</span>
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
