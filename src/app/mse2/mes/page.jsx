@@ -69,8 +69,7 @@ const SEPMImportantQuestions = () => {
       <div className="max-w-6xl mx-auto px-6 py-10">
         {renderActiveComponent()}
       </div>
-
-      {/* Footer */}
+      
       {/* <footer className="bg-gray-800 text-gray-300 py-4 mt-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-sm">&copy; 2025 SEPM Documentation. All rights reserved.</p>
