@@ -23,6 +23,12 @@ const Navbar = () => {
       ],
     },
     {
+        name: 'MES',
+        dropdown: [
+          { name: 'Part 1', href: '/mse2/mes' },
+        ],
+      },
+    {
       name: 'SEPM',
       dropdown: [
         { name: 'Part 1', href: '/mse2/sepm' },

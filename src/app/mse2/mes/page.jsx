@@ -40,7 +40,7 @@ const SEPMImportantQuestions = () => {
           <h1 className="text-4xl font-extrabold tracking-wide">
             MES Important Questions
           </h1>
-
+          <br />
           {/* Buttons to switch between pages */}
           <div className="mb-6">
             <button
