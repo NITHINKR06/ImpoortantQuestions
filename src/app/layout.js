@@ -21,10 +21,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        {/* Custom favicon */}
-        <link rel="icon" href="/favicon.png" />
-      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}
