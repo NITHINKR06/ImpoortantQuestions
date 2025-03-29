@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import Imp1 from './imp1.jsx';
+import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
 import Imp3 from './Imp3.jsx';
 
