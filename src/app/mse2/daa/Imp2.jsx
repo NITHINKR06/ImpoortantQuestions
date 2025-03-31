@@ -8,7 +8,7 @@ import HEAPSORT from '../../images/daa/HEAPSORT.jpg';
 import WARSHALLS from '../../images/daa/WARSHALLS.png';
 import FLOYDS from '../../images/daa/FLOYDS.png';
 import KNAPSACK from '../../images/daa/KNAPSACK.png';
-import HORSPOOL from '../../images/daa/HORSPOOL.png';
+import HORSPOOL from '../../images/daa/HORSPOOL.jpg';
 
 export default function Imp2() {
   // Define gallery images with description
