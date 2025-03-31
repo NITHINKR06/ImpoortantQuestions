@@ -11,47 +11,78 @@ import KNAPSACK from '../../images/daa/KNAPSACK.png';
 import HORSPOOL from '../../images/daa/HORSPOOL.jpg';
 
 export default function Imp2() {
-  // Define gallery images with description
+  // Helper function to ensure YouTube URL is in embed format
+  const getEmbedUrl = (url) => {
+    // If URL is already in embed format, return it directly (and remove any query parameters)
+    if (url.includes('embed')) {
+      return url.split('?')[0];
+    }
+    // If URL is in shortened format, convert it
+    if (url.includes('youtu.be')) {
+      const videoId = url.split('/').pop().split('?')[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    // If URL is a standard YouTube watch URL
+    if (url.includes('watch')) {
+      const urlObj = new URL(url);
+      const videoId = urlObj.searchParams.get('v');
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return url; // Default to returning the original URL if none of the conditions match
+  };
+
+  // Define gallery images with description and associated YouTube video link
   const images = [
     { 
       src: BFS, 
       alt: 'BFS', 
-      desc: 'This illustration shows the Breadth First Search algorithm in action.' 
+      desc: 'This illustration shows the Breadth First Search algorithm in action.',
+      youtube: 'https://www.youtube.com/embed/0_SIA72bAhk' // Ensure this ID is valid
     },
     { 
       src: DFS, 
       alt: 'DFS', 
-      desc: 'This illustration shows the Depth First Search algorithm in action.' 
+      desc: 'This illustration shows the Depth First Search algorithm in action.',
+      youtube: 'https://www.youtube.com/embed/UWqjBUxuniM'
     },
     { 
       src: AVL, 
       alt: 'AVL', 
-      desc: 'Construction of AVL tree' 
+      desc: 'Construction of AVL tree',
+      // Replace VIDEO_ID_AVL with a valid YouTube video ID
+      youtube: 'https://www.youtube.com/embed/VIDEO_ID_AVL'
     },
     { 
       src: HEAPSORT, 
       alt: 'HeapSort', 
-      desc: 'This illustration shows the heapsort algorithm in action.' 
+      desc: 'This illustration shows the heapsort algorithm in action.',
+      // Replace VIDEO_ID_HEAPSORT with a valid YouTube video ID
+      youtube: 'https://www.youtube.com/embed/VIDEO_ID_HEAPSORT'
     },
     { 
       src: WARSHALLS, 
       alt: 'WARSHALLS', 
-      desc: 'This illustration shows the WARSHALLS algorithm in action.' 
+      desc: 'This illustration shows the WARSHALLS algorithm in action.',
+      youtube: 'https://www.youtube.com/embed/_-p8zhizock'
     },
     { 
       src: FLOYDS, 
       alt: 'FLOYDS', 
-      desc: 'This illustration shows the FLOYDS algorithm in action.' 
+      desc: 'This illustration shows the FLOYDS algorithm in action.',
+      youtube: 'https://www.youtube.com/embed/oNI0rf2P9gE'
     },
     { 
       src: KNAPSACK, 
       alt: 'KNAPSACK', 
-      desc: 'This illustration shows the KNAPSACK algorithm in action.' 
+      desc: 'This illustration shows the KNAPSACK algorithm in action.',
+      youtube: 'https://www.youtube.com/embed/nLmhmB6NzcM'
     },
     { 
       src: HORSPOOL, 
       alt: 'HORSPOOL', 
-      desc: 'This illustration shows the HORSPOOL algorithm in action.' 
+      desc: 'This illustration shows the HORSPOOL algorithm in action.',
+      // Replace VIDEO_ID_HORSPOOL with a valid YouTube video ID
+      youtube: 'https://www.youtube.com/embed/VIDEO_ID_HORSPOOL'
     },
     // Add more images as needed
   ];
@@ -108,7 +139,20 @@ export default function Imp2() {
               </button>
             </div>
             <div className="p-4">
-              <p className="text-center text-gray-800">{selectedImage.desc}</p>
+              <p className="text-center text-gray-800 mb-4">{selectedImage.desc}</p>
+              {/* Render YouTube video if available */}
+              {selectedImage.youtube && (
+                <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+                  <iframe
+                    src={getEmbedUrl(selectedImage.youtube)}
+                    title={selectedImage.alt}
+                    // frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
         </div>
