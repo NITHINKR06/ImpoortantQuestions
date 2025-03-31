@@ -47,6 +47,11 @@ export default function Imp2() {
       alt: 'KNAPSACK', 
       desc: 'This illustration shows the KNAPSACK algorithm in action.' 
     },
+    { 
+      src: HORSPOOL, 
+      alt: 'HORSPOOL', 
+      desc: 'This illustration shows the HORSPOOL algorithm in action.' 
+    },
     // Add more images as needed
   ];
 
