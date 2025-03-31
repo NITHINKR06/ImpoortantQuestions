@@ -1,118 +1,73 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import { FaFilePdf, FaFilePowerpoint, FaFileImage, FaTimes } from 'react-icons/fa';
 
-// Set up pdfjs worker (required for react-pdf)
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function Maths() {
-  // Convert your Google Drive URL into a direct link by extracting the file ID.
-  const googleDrivePdfUrl = `https://drive.google.com/uc?export=view&id=1jYWVGwy5mDdSbgd6QnagreJmlsMKatCy`;
-
-  // Files list – adjust or add files as needed.
+export default function FileViewer() {
   const files = [
-    { id: 1, type: 'pdf', name: 'Google Drive PDF', url: googleDrivePdfUrl },
-    { id: 2, type: 'pptx', name: 'Sample Presentation', url: '/files/sample.pptx' },
-    { id: 3, type: 'image', name: 'Sample Image', url: '/files/sample.jpg' },
+    { id: 1, type: 'pdf', name: 'Algorithm Notes', url: 'https://drive.google.com/uc?export=view&id=1jYWVGwy5mDdSbgd6QnagreJmlsMKatCy' },
+    { id: 2, type: 'pptx', name: 'Data Structures', url: '/files/sample.pptx' },
+    { id: 3, type: 'image', name: 'Graph Theory', url: '/files/sample.jpg' },
   ];
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentFile, setCurrentFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [numPages, setNumPages] = useState(null);
 
   const openFile = (file) => {
-    setCurrentFile(file);
-    setModalOpen(true);
+    setSelectedFile(file);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-    setCurrentFile(null);
+  const closeFile = () => {
+    setSelectedFile(null);
     setNumPages(null);
   };
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
-
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-semibold mb-6 text-center">File Viewer</h1>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-3xl font-semibold text-center mb-6">File Viewer</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {files.map((file) => (
           <div
             key={file.id}
             onClick={() => openFile(file)}
-            className="bg-white shadow-md rounded-lg p-6 cursor-pointer hover:shadow-xl transition-shadow"
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition"
           >
-            <div className="flex flex-col items-center">
-              <div className="mb-4">
-                {file.type === 'pdf' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-3-3v6m-9 4h18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                )}
-                {file.type === 'pptx' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M8 13h10m-9 4h10M3 21h18a2 2 0 002-2v-5H1v5a2 2 0 002 2z" />
-                  </svg>
-                )}
-                {file.type === 'image' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 19h18M4 5v14m16-14v14" />
-                  </svg>
-                )}
-              </div>
-              <div className="text-xl font-medium">{file.name}</div>
-            </div>
+            {file.type === 'pdf' && <FaFilePdf className="text-red-500 text-5xl mb-4" />}
+            {file.type === 'pptx' && <FaFilePowerpoint className="text-orange-500 text-5xl mb-4" />}
+            {file.type === 'image' && <FaFileImage className="text-green-500 text-5xl mb-4" />}
+            <p className="text-lg font-medium">{file.name}</p>
           </div>
         ))}
       </div>
 
-      {/* Modal for viewing file content */}
-      {modalOpen && currentFile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white rounded-lg overflow-hidden shadow-2xl max-w-4xl w-full relative">
-            <button
-              onClick={closeModal}
-              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-3xl font-bold focus:outline-none"
-            >
-              &times;
+      {selectedFile && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full p-6 relative">
+            <button onClick={closeFile} className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-2xl">
+              <FaTimes />
             </button>
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4 text-center">{currentFile.name}</h2>
-              <div className="w-full h-[500px] overflow-auto">
-                {currentFile.type === 'image' && (
-                  <img
-                    src={currentFile.url}
-                    alt={currentFile.name}
-                    className="w-full h-full object-contain rounded"
-                  />
-                )}
-                {currentFile.type === 'pdf' && (
-                  <div className="flex flex-col items-center">
-                    <Document
-                      file={currentFile.url}
-                      onLoadSuccess={onDocumentLoadSuccess}
-                      className="shadow-lg rounded"
-                    >
-                      {Array.from(new Array(numPages), (el, index) => (
-                        <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-                      ))}
-                    </Document>
-                  </div>
-                )}
-                {currentFile.type === 'pptx' && (
-                  <iframe
-                    src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
-                      window.location.origin + currentFile.url
-                    )}`}
-                    title={currentFile.name}
-                    className="w-full h-full rounded"
-                  />
-                )}
-              </div>
+            <h2 className="text-xl font-bold text-center mb-4">{selectedFile.name}</h2>
+            <div className="overflow-auto max-h-[500px] p-2 border rounded-lg">
+              {selectedFile.type === 'image' && (
+                <img src={selectedFile.url} alt={selectedFile.name} className="w-full rounded" />
+              )}
+              {selectedFile.type === 'pdf' && (
+                <Document file={selectedFile.url} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
+                  {Array.from(new Array(numPages), (el, index) => (
+                    <Page key={`page_${index + 1}`} pageNumber={index + 1} className="mb-2 shadow" />
+                  ))}
+                </Document>
+              )}
+              {selectedFile.type === 'pptx' && (
+                <iframe
+                  src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(window.location.origin + selectedFile.url)}`}
+                  title={selectedFile.name}
+                  className="w-full h-[500px] rounded"
+                />
+              )}
             </div>
           </div>
         </div>
