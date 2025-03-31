@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
+import Imp2 from './Imp2.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -11,8 +12,8 @@ const SEPMImportantQuestions = () => {
     switch (activeComponent) {
       case "imp1":
         return <Imp1 />;
-      // case "imp2":
-      //   return <Imp2 />;
+      case "imp2":
+        return <Imp2 />;
       // case "imp3":
       //   return <Imp3 />;
       default:
@@ -31,9 +32,9 @@ const SEPMImportantQuestions = () => {
       : `${baseButtonClasses} bg-white text-indigo-700 border border-indigo-700`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* Fixed Header */}
-      <header className="text-black py-6 shadow-md">
+      <header className="text-black py-6 shadow-xs">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-4xl font-extrabold tracking-wide">
             DAA Important Questions
@@ -47,13 +48,13 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            {/* <button
+            <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
-              Important 2
+              Algorithm
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}
             >

@@ -16,6 +16,7 @@ const Navbar = () => {
   // Navigation links; FCN, MES, DAA, SEPM include sub-pages
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Maths', href: '/maths' },
     {
       name: 'FCN',
       dropdown: [
