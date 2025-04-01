@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-// Import your local images
 import image1 from '@/app/images/fcn/NAT.png';
 import image2 from '@/app/images/fcn/IPV6 Address.png';
 import image3 from '@/app/images/fcn/Subnet Masks.png';
@@ -24,12 +23,12 @@ export default function ImageGallery() {
   };
 
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+    <div className="px-4 py-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {images.map((img, index) => (
           <div
             key={index}
-            className="relative cursor-pointer hover:scale-105 transition-transform duration-300 overflow-hidden rounded-lg shadow-md"
+            className="relative aspect-square cursor-pointer hover:scale-105 transition-transform duration-300 overflow-hidden rounded-lg shadow-md w-full"
             onClick={() => openModal(img)}
           >
             <Image
@@ -37,6 +36,7 @@ export default function ImageGallery() {
               alt={`Gallery ${index}`}
               className="w-full h-full object-cover rounded-lg"
               placeholder="blur"
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
             />
           </div>
         ))}
@@ -47,7 +47,6 @@ export default function ImageGallery() {
           className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg"
           onClick={closeModal}
         >
-          {/* Fixed close button */}
           <button
             onClick={closeModal}
             className="fixed top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition"
@@ -56,7 +55,7 @@ export default function ImageGallery() {
           </button>
           
           <div
-            className="relative max-h-[90vh] max-w-[70vw] sm:w-[100vw] overflow-auto"
+            className="relative max-h-[90vh] max-w-[90vw] sm:max-w-[70vw] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
