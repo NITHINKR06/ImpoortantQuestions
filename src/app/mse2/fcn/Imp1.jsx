@@ -242,13 +242,24 @@ const sections = [
     title: '9. CIDR (Classless Interdomain Routing)',
     content: (
       <>
-        <p className="text-gray-700"><strong>Notation:</strong> IP/Prefix (e.g., 192.168.1.0/24).</p>
+        <p className="text-gray-700">
+          CIDR (Classless Interdomain Routing) uses the notation IP/Prefix (e.g., 192.168.1.0/24) to denote an IP address and its associated network prefix, providing efficient IP allocation and improved routing flexibility compared to classful addressing.
+        </p>
         <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">Benefits:</h3>
         <ul className="list-disc ml-8 text-gray-700 space-y-2">
-          <li>Efficient IP Allocation: Reduces waste (e.g., a /26 subnet allows 62 hosts).</li>
-          <li>Route Aggregation: Combines subnets into larger blocks (e.g., merging four /24s into a /22).</li>
-          <li>Example: A university divides a /16 block into /17, /18 subnets for departments.</li>
+          <li>
+            <strong>Efficient IP Allocation:</strong> Allows subnet masks that don’t follow traditional classful boundaries, reducing wasted IP addresses. For example, a /26 subnet offers 64 IP addresses, with 62 usable.
+          </li>
+          <li>
+            <strong>Route Aggregation:</strong> Enables combining several contiguous subnets into one larger aggregated route, such as merging four /24 networks into a single /22 network.
+          </li>
+          <li>
+            <strong>Flexible Network Design:</strong> Permits organizations to allocate subnets based on specific size requirements, like a university dividing a /16 block into various subnet sizes tailored to different departmental needs.
+          </li>
         </ul>
+        <p className="text-gray-700 mt-4">
+          Refer to the CIDR.docx file for more details.
+        </p>
       </>
     )
   },

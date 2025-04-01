@@ -53,13 +53,13 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            {/* <button
+            <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
-              Important 2
+              Diagrams
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}
             >
