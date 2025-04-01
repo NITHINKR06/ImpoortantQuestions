@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function AssemblyPrograms() {
   return (
-    <main className="space-y-12 p-4 bg-gray-50">
+    <main className="space-y-12 p-4">
       <Section
         title="1. Assembly Program: Read &amp; Display Character Macros"
         content={
@@ -625,16 +625,27 @@ END MAIN`}
 }
 
 const Section = ({ title, content }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <section className="bg-white rounded-xl shadow-xl p-8">
-      {title && (
-        <h2 className="text-3xl font-bold text-indigo-800 mb-4">{title}</h2>
+    <section className="bg-white rounded-xl shadow-xl p-8 mb-6 transition-all duration-200">
+      <div 
+        className="flex justify-between items-center cursor-pointer hover:bg-indigo-50 p-4 rounded-lg"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h2 className="text-2xl font-semibold text-indigo-800">{title}</h2>
+        <span className="text-2xl text-indigo-600 ml-4">
+          {isOpen ? '−' : '+'}
+        </span>
+      </div>
+      {isOpen && (
+        <div className="mt-6 animate-fadeIns">
+          {content}
+        </div>
       )}
-      <div>{content}</div>
     </section>
   );
 };
-
 const CodeBlock = ({ children }) => {
   const preRef = React.useRef(null);
 
@@ -649,15 +660,15 @@ const CodeBlock = ({ children }) => {
   return (
     <div className="relative">
       <button
-  className="absolute top-2 right-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white px-3 py-1 rounded-full shadow-lg transform hover:scale-105 transition duration-300 focus:outline-none"
-  onClick={handleCopy}
->
-  Copy
-</button>
+        className="absolute top-2 right-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white px-3 py-1 rounded-full shadow-lg transform hover:scale-105 transition duration-300 focus:outline-none"
+        onClick={handleCopy}
+      >
+        Copy
+      </button>
 
       <pre
         ref={preRef}
-        className="bg-gray-100 p-4 rounded text-gray-800 overflow-auto whitespace-pre-wrap"
+        className="bg-gray-200 p-4 rounded text-gray-800 overflow-auto whitespace-pre-wrap"
       >
         {children}
       </pre>
