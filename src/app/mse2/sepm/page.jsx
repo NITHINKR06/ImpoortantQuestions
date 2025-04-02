@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
 import Imp3 from './Imp3.jsx';
+import ProtectedPage from '@/app/ProtectedPage.jsx';
 
 
 const SEPMImportantQuestions = () => {
@@ -34,6 +35,7 @@ const SEPMImportantQuestions = () => {
       : `${baseButtonClasses} bg-white text-indigo-700 border border-indigo-700`;
 
   return (
+    <ProtectedPage>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       {/* Fixed Header */}
       <header className="text-black py-6 shadow-md">
@@ -81,6 +83,7 @@ const SEPMImportantQuestions = () => {
         </div>
       </footer> */}
     </div>
+    </ProtectedPage>
   );
 };
 

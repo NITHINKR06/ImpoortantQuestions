@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,11 @@ const Navbar = () => {
     setMobileOpenDropdown(null);
   };
   const pathname = usePathname();
+
+  const handleLogout = () => {
+    // Remove the access cookie and require the user to log in again.
+    Cookies.remove('accessGranted');
+  };
 
   // Navigation links; FCN, MES, DAA, SEPM include sub-pages
   const navLinks = [
@@ -143,7 +149,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden md:flex justify-center mt-4">
+      <div className="hidden md:flex justify-center mt-4 mb-4">
         <div className="w-[70%] flex justify-between items-center bg-gray-200 rounded-full p-4 shadow-lg">
           <Link href="/" legacyBehavior>
             <a className="text-xl font-semibold text-black">Exam Portal</a>
@@ -206,6 +212,12 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          <button
+            onClick={handleLogout}
+            className="bg-red-400 text-white px-4 py-2 rounded-xl hover:bg-red-600"
+          >
+            Remove
+          </button>
         </div>
       </div>
     </>
