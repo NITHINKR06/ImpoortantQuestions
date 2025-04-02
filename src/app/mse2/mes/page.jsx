@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
+import ImageGallery from './Imp3.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
@@ -14,8 +15,8 @@ const SEPMImportantQuestions = () => {
         return <Imp1 />;
       case "imp2":
         return <Imp2 />;
-      // case "imp3":
-      //   return <Imp3 />;
+      case "imp3":
+        return <ImageGallery />;
       default:
         return <Imp1 />;
     }
@@ -46,7 +47,7 @@ const SEPMImportantQuestions = () => {
               className={buttonClasses("imp1")}
               onClick={() => setActiveComponent("imp1")}
             >
-              Theroy
+              Theory
             </button>
             <button
               className={buttonClasses("imp2")}
@@ -54,12 +55,12 @@ const SEPMImportantQuestions = () => {
             >
               All Programs
             </button>
-            {/* <button
+            <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}
             >
-              Important 3
-            </button> */}
+              Images
+            </button>
           </div>
         </div>
       </header>
