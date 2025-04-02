@@ -16,6 +16,7 @@ const ProtectedPage = ({ children }) => {
       setAccessGranted(true);
     } else {
       setShowModal(true);
+      // Redirect to the home page if the token is not found
     }
   }, []);
 

@@ -1,22 +1,33 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   // Track which mobile dropdown is open (by dropdown name) instead of a single boolean.
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState(null);
+  const [tokenFound, setTokenFound] = useState(false);
+  const router = useRouter();
+
   const closeMenu = () => {
     setIsOpen(false);
     setMobileOpenDropdown(null);
   };
   const pathname = usePathname();
 
+  useEffect(() => {
+    // Check for the token on component mount
+    const token = Cookies.get('accessGranted');
+    setTokenFound(token === 'true');
+  }, []);
+
   const handleLogout = () => {
-    // Remove the access cookie and require the user to log in again.
+    // Remove the access cookie and update the token state.
     Cookies.remove('accessGranted');
+    setTokenFound(false);
+    router.push('/');
   };
 
   // Navigation links; FCN, MES, DAA, SEPM include sub-pages
@@ -49,6 +60,9 @@ const Navbar = () => {
     },
     { name: 'Contact', href: '/contact' },
   ];
+
+  // Change the button label based on token presence.
+  const buttonLabel = tokenFound ? 'Logout' : 'Token...!';
 
   return (
     <>
@@ -214,9 +228,9 @@ const Navbar = () => {
           </ul>
           <button
             onClick={handleLogout}
-            className="bg-red-400 text-white px-4 py-2 rounded-xl hover:bg-red-600"
+            className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600"
           >
-            Remove
+            {buttonLabel}
           </button>
         </div>
       </div>
