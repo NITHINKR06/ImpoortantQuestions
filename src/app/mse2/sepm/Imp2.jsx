@@ -22,7 +22,7 @@ export default function ImageGallery() {
     { src: image4, desc: 'Weather station use cases ' },
     { src: image5, desc: 'Test driven development  ' },
     { src: image6, desc: 'Extreme programming ' },
-    // { src: image7, desc: ' ' },
+    { src: '', desc: ' If there is any, DM that image to the class group.' },
   ];
 
   // Pass the entire image object to openModal
