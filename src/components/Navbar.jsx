@@ -43,7 +43,8 @@ const Navbar = () => {
     {
       name: 'MES',
       dropdown: [
-        { name: 'Part 1', href: '/mse2/mes' },
+        { name: 'MSE2', href: '/mse2/mes' },
+        { name: 'Lab MSE', href: '/labmse/mesLab' },
       ],
     },
     {
