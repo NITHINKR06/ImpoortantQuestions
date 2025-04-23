@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-// import Head from "next/head";
-// import ProtectedPage from "./ProtectedPage";
+import { AuthProvider } from "@/components/auth/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        {/* <ProtectedPage> */}
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+        <AuthProvider>
           <Navbar />
           {children}
-        {/* </ProtectedPage> */}
+        </AuthProvider>
       </body>
     </html>
   );
