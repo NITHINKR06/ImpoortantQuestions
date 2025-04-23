@@ -3,7 +3,9 @@ const authorizedUsers = [
   'admin@example.com',
   'user1@example.com',
   'user2@example.com',
-  'admin@iques.in'
+  'admin@iques.in',
+  'nnm23cb053@nmamit.in',
+  'nnm24cb503@nmamit.in',
   // Add more authorized users as needed
 ];
 
