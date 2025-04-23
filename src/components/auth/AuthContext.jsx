@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 import authorizedUsers from '../../config/authorizedUsers';
@@ -14,7 +14,54 @@ const deviceSessions = {};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Start with loading true
+  
+  // Check for existing token on mount and restore session
+  useEffect(() => {
+    const restoreSession = () => {
+      try {
+        const token = Cookies.get('token');
+        if (token) {
+          // Decode the token
+          const tokenData = JSON.parse(atob(token));
+          
+          // Verify token hasn't expired (24 hours)
+          const now = new Date().getTime();
+          const tokenAge = now - tokenData.timestamp;
+          const oneDayInMs = 24 * 60 * 60 * 1000;
+          
+          if (tokenAge < oneDayInMs) {
+            // Token is valid, restore user session
+            const email = tokenData.email;
+            
+            // Restore device session
+            if (tokenData.deviceId) {
+              deviceSessions[email] = tokenData.deviceId;
+            }
+            
+            // Set user state
+            setUser({ 
+              email, 
+              isDevMode: email === 'admin@iques.in' 
+            });
+          } else {
+            // Token expired, clear it
+            Cookies.remove('token');
+            Cookies.remove('deviceId');
+          }
+        }
+      } catch (error) {
+        console.error('Error restoring session:', error);
+        // If there's an error parsing the token, remove it
+        Cookies.remove('token');
+        Cookies.remove('deviceId');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    restoreSession();
+  }, []);
 
   const login = async (email) => {
     setLoading(true);
