@@ -31,7 +31,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     {
-      name: 'Subjects',
+      name: 'MES 2',
       dropdown: [
         { name: 'Maths', href: '/maths' },
         {

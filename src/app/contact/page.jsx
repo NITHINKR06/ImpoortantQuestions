@@ -57,7 +57,7 @@ export default function Contact() {
     >
       <div className="max-w-6xl mx-auto">
         {/* Unauthorized User Message */}
-        {!user && (
+        {/* {!user && (
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -88,7 +88,7 @@ export default function Contact() {
               </a>
             </div>
           </motion.div>
-        )}
+        )} */}
 
         {/* Profile Section */}
         <motion.div
