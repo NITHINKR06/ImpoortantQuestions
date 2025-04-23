@@ -5,7 +5,7 @@ import NavWrapper from '../components/NavWrapper';
 
 export const metadata = {
   title: 'IQues',
-  description: 'Important Questions ... for your exams',
+  description: 'Important Questions ... ',
 }
 
 export default function RootLayout({ children }) {
