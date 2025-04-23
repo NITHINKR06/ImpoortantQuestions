@@ -14,7 +14,7 @@ export default function Contact() {
   const socialLinks = [
     { icon: <FaGithub />, name: 'GitHub', url: 'https://github.com/NITHINKR06', handle: '@NITHINKR06' },
     { icon: <FaLinkedin />, name: 'LinkedIn', url: 'https://www.linkedin.com/in/nithinkr06', handle: '@nithinkr06' },
-    { icon: <FaInstagram />, name: 'Instagram', url: 'https://www.instagram.com/__nithin_poojary_/', handle: '@__nithin_poojary_' },
+    { icon: <FaInstagram />, name: 'Instagram', url: 'https://www.instagram.com/__nithin_poojary_/', handle: '@_nithin.kr_' },
   ];
 
   const contactInfo = [
