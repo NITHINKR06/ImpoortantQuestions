@@ -47,8 +47,26 @@ export const AuthProvider = ({ children }) => {
         // Register device session
         deviceSessions[email] = deviceId;
 
+        // Generate a unique token with user information
+        const tokenData = {
+          email,
+          deviceId,
+          isDevMode: email === 'admin@iques.in',
+          timestamp: new Date().getTime(),
+          id: uuidv4()
+        };
+        
+        // Convert token data to string and encode
+        const tokenString = btoa(JSON.stringify(tokenData));
+        
+        // Set the token in cookies with appropriate settings
+        Cookies.set('token', tokenString, { 
+          expires: 1, // Expires in 1 day
+          secure: process.env.NODE_ENV === 'production', // Secure in production
+          sameSite: 'strict' // Restrict to same site
+        });
+
         setUser({ email, isDevMode: email === 'admin@iques.in' });
-        Cookies.set('token', 'fake-jwt-token', { expires: 1 });
         setLoading(false);
         resolve();
       }, 500);
@@ -61,6 +79,8 @@ export const AuthProvider = ({ children }) => {
       delete deviceSessions[user.email];
     }
     setUser(null);
+    
+    // Remove all authentication cookies
     Cookies.remove('token');
     Cookies.remove('deviceId');
   };
