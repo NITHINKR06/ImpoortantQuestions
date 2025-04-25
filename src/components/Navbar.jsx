@@ -1,308 +1,501 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthContext';
-import { HiMenu, HiX, HiChevronDown, HiLogout, HiLogin, HiUser } from 'react-icons/hi';
+import { 
+  HiMenu, 
+  HiX, 
+  HiChevronDown, 
+  HiLogout, 
+  HiLogin, 
+  HiUser,
+  HiAcademicCap,
+  HiHome,
+  HiMail,
+  HiBookOpen,
+  HiOutlineDocumentText,
+  HiOutlineLibrary,
+  HiOutlineChartBar,
+  HiOutlineCode,
+  HiCog
+} from 'react-icons/hi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mobileOpenDropdown, setMobileOpenDropdown] = useState(null);
-  const [mobileSubDropdown, setMobileSubDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeSubDropdown, setActiveSubDropdown] = useState(null);
   const { user, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null);
+        setActiveSubDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setActiveDropdown(null);
+    setActiveSubDropdown(null);
+  }, [pathname]);
 
   const closeMenu = () => {
     setIsOpen(false);
-    setMobileOpenDropdown(null);
-    setMobileSubDropdown(null);
+    setActiveDropdown(null);
+    setActiveSubDropdown(null);
   };
 
   const handleLogout = () => {
     logout();
+    closeMenu();
   };
 
   const handleLogin = () => {
     router.push('/login');
+    closeMenu();
+  };
+
+  const toggleDropdown = (name) => {
+    setActiveDropdown(activeDropdown === name ? null : name);
+    setActiveSubDropdown(null);
+  };
+
+  const toggleSubDropdown = (name) => {
+    setActiveSubDropdown(activeSubDropdown === name ? null : name);
+  };
+
+  const subjectIcons = {
+    'Maths': <HiOutlineChartBar className="h-5 w-5" />,
+    'FCN': <HiOutlineLibrary className="h-5 w-5" />,
+    'MES': <HiCog className="h-5 w-5" />,
+    'DAA': <HiOutlineCode className="h-5 w-5" />,
+    'SEPM': <HiOutlineDocumentText className="h-5 w-5" />
+  };
+
+  const renderSubjectIcon = (subject) => {
+    return subjectIcons[subject] || <HiBookOpen className="h-5 w-5" />;
   };
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    {
-      name: 'MES 2',
-      dropdown: [
-        { name: 'Maths', href: '/maths' },
-        {
-          name: 'FCN',
-          href: '/mse2/fcn',
-        },
-        {
-          name: 'MES',
-          dropdown: [
-            { name: 'MSE2', href: '/mse2/mes' },
-            { name: 'Lab MSE', href: '/labmse/mesLab' },
-          ],
-        },
-        {
-          name: 'DAA',
-          href: '/mse2/daa',
-        },
-        {
-          name: 'SEPM',
-          href: '/mse2/sepm',
-        },
-      ],
+    { 
+      name: 'Home', 
+      href: '/',
+      icon: <HiHome className="h-5 w-5" />
     },
-    { name: 'Contact', href: '/contact' },
+    {
+      name: 'Unit 1',
+      icon: <HiAcademicCap className="h-5 w-5" />,
+      dropdown: [
+        { name: 'Maths', href: '/unit1/maths', icon: subjectIcons['Maths'] },
+        { name: 'FCN', href: '/unit1/fcn', icon: subjectIcons['FCN'] },
+        { name: 'MES', href: '/unit1/mes', icon: subjectIcons['MES'] },
+        { name: 'DAA', href: '/unit1/daa', icon: subjectIcons['DAA'] },
+        { name: 'SEPM', href: '/unit1/sepm', icon: subjectIcons['SEPM'] },
+      ]
+    },
+    {
+      name: 'Unit 2',
+      icon: <HiAcademicCap className="h-5 w-5" />,
+      dropdown: [
+        { name: 'Maths', href: '/unit2/maths', icon: subjectIcons['Maths'] },
+        { name: 'FCN', href: '/unit2/fcn', icon: subjectIcons['FCN'] },
+        { name: 'MES', href: '/unit2/mes', icon: subjectIcons['MES'] },
+        { name: 'DAA', href: '/unit2/daa', icon: subjectIcons['DAA'] },
+        { name: 'SEPM', href: '/unit2/sepm', icon: subjectIcons['SEPM'] },
+      ]
+    },
+    {
+      name: 'Unit 3',
+      icon: <HiAcademicCap className="h-5 w-5" />,
+      dropdown: [
+        { name: 'Maths', href: '/unit3/maths', icon: subjectIcons['Maths'] },
+        { name: 'FCN', href: '/unit3/fcn', icon: subjectIcons['FCN'] },
+        { name: 'MES', href: '/unit3/mes', icon: subjectIcons['MES'] },
+        { name: 'DAA', href: '/unit3/daa', icon: subjectIcons['DAA'] },
+        { name: 'SEPM', href: '/unit3/sepm', icon: subjectIcons['SEPM'] },
+      ]
+    },
+    { 
+      name: 'Contact', 
+      href: '/contact',
+      icon: <HiMail className="h-5 w-5" />
+    },
   ];
 
-  // Helper to check if current path is active for a link or its dropdowns
-  const isActive = (link) => {
-    if (link.href && pathname === link.href) return true;
-    if (link.dropdown) {
-      return link.dropdown.some((item) => isActive(item));
+  const isActive = (href) => pathname === href;
+  
+  const getCurrentPageInfo = () => {
+    const paths = pathname.split('/').filter(Boolean);
+    if (paths.length >= 2) {
+      const unit = paths[0].toUpperCase().includes('UNIT') 
+        ? paths[0].charAt(0).toUpperCase() + paths[0].slice(1)
+        : paths[0];
+      const subject = paths[1].toUpperCase();
+      return { unit, subject };
     }
-    return false;
+    return null;
   };
 
+  const pageInfo = getCurrentPageInfo();
+
   return (
-    <>
+    <div className="relative">
+      {/* Page context banner */}
+      {pageInfo && (
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2">
+          <div className="container mx-auto px-4 flex items-center justify-center">
+            <div className="flex items-center">
+              {renderSubjectIcon(pageInfo.subject)}
+              <span className="ml-2 font-medium">
+                {pageInfo.unit} / {pageInfo.subject}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Navbar */}
       <div className="md:hidden">
-        <nav className="bg-gray-700 text-white p-4 relative">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link href="/" legacyBehavior>
-              <a className="text-xl font-bold">Exam Portal</a>
-            </Link>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
-            </button>
-          </div>
-          {isOpen && (
-            <div className="fixed inset-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm flex flex-col items-center pt-10">
+        <nav className="bg-white shadow-lg dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-between items-center h-16">
+              <Link href="/" onClick={closeMenu}>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-2 rounded-lg">
+                    <HiAcademicCap className="h-6 w-6" />
+                  </div>
+                  <span className="font-bold text-lg text-gray-900 dark:text-white">
+                    Exam Portal
+                  </span>
+                </div>
+              </Link>
               <button
-                onClick={closeMenu}
-                className="self-end mr-6 mb-6 focus:outline-none"
-                aria-label="Close menu"
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-gray-500 dark:text-gray-400"
               >
-                <HiX className="h-8 w-8 text-white" />
+                {isOpen ? (
+                  <HiX className="h-6 w-6" />
+                ) : (
+                  <HiMenu className="h-6 w-6" />
+                )}
               </button>
-              <ul className="w-full max-w-md space-y-4 text-lg">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    {link.dropdown ? (
-                      <>
+            </div>
+          </div>
+
+          {/* Mobile menu */}
+          {isOpen && (
+            <div 
+              ref={mobileMenuRef}
+              className="absolute z-50 inset-x-0 top-16 bg-white shadow-lg dark:bg-gray-900 transition-all duration-300 ease-in-out"
+              style={{ maxHeight: '80vh', overflow: 'auto' }}
+            >
+              <div className="container mx-auto px-4 py-3">
+                <div className="grid gap-y-6">
+                  {/* User section for mobile */}
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
+                    {user ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="bg-indigo-100 dark:bg-gray-700 p-2 rounded-full">
+                            <HiUser className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 dark:text-white">{user.email}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">Student</p>
+                          </div>
+                        </div>
                         <button
-                          onClick={() =>
-                            setMobileOpenDropdown(
-                              mobileOpenDropdown === link.name ? null : link.name
-                            )
-                          }
-                          className="w-full flex justify-between items-center px-6 py-3 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none"
+                          onClick={handleLogout}
+                          className="w-full flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition duration-150 ease-in-out"
                         >
-                          <span>{link.name}</span>
-                          <HiChevronDown
-                            className={`h-5 w-5 transition-transform duration-200 ${
-                              mobileOpenDropdown === link.name ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <HiLogout className="h-5 w-5" />
+                          <span>Logout</span>
                         </button>
-                        {mobileOpenDropdown === link.name && (
-                          <ul className="pl-6 mt-2 space-y-2">
-                            {link.dropdown.map((item) => (
-                              <li key={item.href || item.name}>
-                                {item.dropdown ? (
-                                  <>
-                                    <button
-                                      onClick={() =>
-                                        setMobileSubDropdown(
-                                          mobileSubDropdown === item.name ? null : item.name
-                                        )
-                                      }
-                                      className="w-full flex justify-between items-center px-6 py-2 bg-gray-600 rounded-md hover:bg-gray-500 focus:outline-none"
-                                    >
-                                      <span>{item.name}</span>
-                                      <HiChevronDown
-                                        className={`h-4 w-4 transition-transform duration-200 ${
-                                          mobileSubDropdown === item.name ? 'rotate-180' : ''
-                                        }`}
-                                      />
-                                    </button>
-                                    {mobileSubDropdown === item.name && (
-                                      <ul className="pl-6 mt-1 space-y-1">
-                                        {item.dropdown.map((subItem) => (
-                                          <li key={subItem.href}>
-                                            <Link href={subItem.href} legacyBehavior>
-                                              <a
-                                                onClick={closeMenu}
-                                                className="block px-4 py-2 rounded-md hover:bg-gray-500"
-                                              >
-                                                {subItem.name}
-                                              </a>
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    )}
-                                  </>
-                                ) : (
-                                  <Link href={item.href} legacyBehavior>
-                                    <a
-                                      onClick={closeMenu}
-                                      className="block px-6 py-2 rounded-md hover:bg-gray-500"
-                                    >
-                                      {item.name}
-                                    </a>
-                                  </Link>
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </>
+                      </div>
                     ) : (
-                      <Link href={link.href} legacyBehavior>
-                        <a
-                          onClick={closeMenu}
-                          className="block px-6 py-3 rounded-md hover:bg-gray-500"
-                        >
-                          {link.name}
-                        </a>
-                      </Link>
+                      <button
+                        onClick={handleLogin}
+                        className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-4 py-3 rounded-lg transition duration-150 ease-in-out"
+                      >
+                        <HiLogin className="h-5 w-5" />
+                        <span>Login to Your Account</span>
+                      </button>
                     )}
-                  </li>
-                ))}
-                <li>
-                  {user ? (
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        closeMenu();
-                      }}
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-red-600 rounded-md hover:bg-red-500 focus:outline-none"
-                    >
-                      <HiLogout className="h-5 w-5" />
-                      <span>Logout</span>
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        handleLogin();
-                        closeMenu();
-                      }}
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
-                    >
-                      <HiLogin className="h-5 w-5" />
-                      <span>Login</span>
-                    </button>
-                  )}
-                </li>
-              </ul>
+                  </div>
+
+                  {/* Navigation links for mobile */}
+                  <nav>
+                    <ul className="space-y-1">
+                      {navLinks.map((link) => (
+                        <li key={link.name}>
+                          {link.dropdown ? (
+                            <div className="mb-2">
+                              <button
+                                onClick={() => toggleDropdown(link.name)}
+                                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl 
+                                  ${activeDropdown === link.name 
+                                    ? 'bg-indigo-50 text-indigo-600 dark:bg-gray-800 dark:text-indigo-400'
+                                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'}`}
+                              >
+                                <div className="flex items-center space-x-3">
+                                  {link.icon}
+                                  <span className="font-medium">{link.name}</span>
+                                </div>
+                                <HiChevronDown 
+                                  className={`h-5 w-5 transition-transform duration-200 ${
+                                    activeDropdown === link.name ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+                              
+                              {activeDropdown === link.name && (
+                                <div className="mt-2 ml-5 border-l-2 border-indigo-200 dark:border-gray-700 pl-4 space-y-1">
+                                  {link.dropdown.map((item) => (
+                                    <Link
+                                      key={item.href}
+                                      href={item.href}
+                                      onClick={closeMenu}
+                                    >
+                                      <div className={`flex items-center space-x-3 px-4 py-2 rounded-lg ${
+                                        isActive(item.href)
+                                          ? 'bg-indigo-100 text-indigo-700 font-medium dark:bg-gray-800 dark:text-indigo-400'
+                                          : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                                      }`}>
+                                        {item.icon}
+                                        <span>{item.name}</span>
+                                      </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              onClick={closeMenu}
+                            >
+                              <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl ${
+                                isActive(link.href)
+                                  ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-800 dark:text-indigo-400'
+                                  : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                              }`}>
+                                {link.icon}
+                                <span className="font-medium">{link.name}</span>
+                              </div>
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
             </div>
           )}
         </nav>
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden md:flex justify-center mt-4 mb-4">
-        <div className="w-[70%] flex justify-between items-center bg-gray-100 rounded-full p-4 shadow-lg">
-          <Link href="/" legacyBehavior>
-            <a className="text-xl font-bold text-gray-900">Exam Portal</a>
-          </Link>
-          <ul className="flex space-x-6 items-center">
-            {navLinks.map((link) => (
-              <li key={link.name} className="relative group">
-                {link.dropdown ? (
-                  <>
-                    <button
-                      className={`px-4 py-2 rounded-full flex items-center space-x-1 transition-colors duration-200 ${
-                        isActive(link) ? 'bg-gray-700 text-white font-semibold' : 'hover:bg-gray-300 hover:text-gray-900'
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <HiChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          isActive(link) ? 'rotate-180' : 'rotate-0'
-                        }`}
-                      />
-                    </button>
-                    <div className="absolute left-0 mt-2 w-48 rounded-md bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-                      <ul className="py-2">
-                        {link.dropdown.map((item) => (
-                          <li key={item.href || item.name} className="relative group">
-                            {item.dropdown ? (
+      <div ref={dropdownRef} className="hidden md:block">
+        <div className="bg-white shadow-lg dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-between items-center h-16">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-2 rounded-lg">
+                      <HiAcademicCap className="h-6 w-6" />
+                    </div>
+                    <span className="font-bold text-xl text-gray-900 dark:text-white">
+                      Exam Portal
+                    </span>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Main navigation */}
+              <div className="hidden lg:flex items-center space-x-1">
+                {navLinks.map((link) => (
+                  <div key={link.name} className="relative">
+                    {link.dropdown ? (
+                      <>
+                        <button
+                          onClick={() => toggleDropdown(link.name)}
+                          className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-150 ease-in-out ${
+                            activeDropdown === link.name
+                              ? 'bg-indigo-50 text-indigo-600 dark:bg-gray-800 dark:text-indigo-400'
+                              : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                          }`}
+                        >
+                          {link.icon}
+                          <span>{link.name}</span>
+                          <HiChevronDown 
+                            className={`h-5 w-5 transition-transform duration-200 ${
+                              activeDropdown === link.name ? 'rotate-180' : ''
+                            }`} 
+                          />
+                        </button>
+                        
+                        {activeDropdown === link.name && (
+                          <div className="absolute z-50 left-0 mt-2 w-64 bg-white rounded-lg shadow-xl dark:bg-gray-800 border border-gray-100 dark:border-gray-700 py-2">
+                            {link.dropdown.map((item) => (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={closeMenu}
+                              >
+                                <div className={`flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 ${
+                                  isActive(item.href)
+                                    ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-700 dark:text-indigo-400'
+                                    : 'text-gray-700 dark:text-gray-300'
+                                }`}>
+                                  {item.icon}
+                                  <span>{item.name}</span>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link href={link.href}>
+                        <div className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-150 ease-in-out ${
+                          isActive(link.href)
+                            ? 'bg-indigo-50 text-indigo-600 dark:bg-gray-800 dark:text-indigo-400'
+                            : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                        }`}>
+                          {link.icon}
+                          <span>{link.name}</span>
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* User section */}
+              <div className="flex items-center">
+                {/* Condensed menu for medium screens */}
+                <div className="lg:hidden">
+                  <button
+                    onClick={() => toggleDropdown('menu')}
+                    className="p-2 rounded-lg text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                  >
+                    <HiMenu className="h-6 w-6" />
+                  </button>
+                  
+                  {activeDropdown === 'menu' && (
+                    <div className="absolute right-4 z-50 mt-2 w-64 bg-white rounded-lg shadow-xl dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+                      <nav className="py-2">
+                        {navLinks.map((link) => (
+                          <div key={link.name}>
+                            {link.dropdown ? (
                               <>
                                 <button
-                                  className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-200 rounded-md"
-                                  onClick={(e) => e.preventDefault()}
+                                  onClick={() => toggleSubDropdown(link.name)}
+                                  className={`flex items-center justify-between w-full px-4 py-2 text-left hover:bg-gray-50 dark:hover:bg-gray-700 ${
+                                    activeSubDropdown === link.name
+                                      ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-700 dark:text-indigo-400'
+                                      : 'text-gray-700 dark:text-gray-300'
+                                  }`}
                                 >
-                                  <span>{item.name}</span>
-                                  <HiChevronDown className="h-4 w-4" />
+                                  <div className="flex items-center space-x-3">
+                                    {link.icon}
+                                    <span>{link.name}</span>
+                                  </div>
+                                  <HiChevronDown 
+                                    className={`h-5 w-5 transition-transform duration-200 ${
+                                      activeSubDropdown === link.name ? 'rotate-180' : ''
+                                    }`} 
+                                  />
                                 </button>
-                                <ul className="absolute left-full top-0 mt-0 w-48 rounded-md bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-                                  {item.dropdown.map((subItem) => (
-                                    <li key={subItem.href}>
-                                      <Link href={subItem.href} legacyBehavior>
-                                        <a className="block px-4 py-2 hover:bg-gray-200">{subItem.name}</a>
+                                
+                                {activeSubDropdown === link.name && (
+                                  <div className="bg-gray-50 dark:bg-gray-700 py-2">
+                                    {link.dropdown.map((item) => (
+                                      <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        onClick={closeMenu}
+                                      >
+                                        <div className={`flex items-center space-x-3 pl-10 pr-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 ${
+                                          isActive(item.href)
+                                            ? 'text-indigo-600 font-medium dark:text-indigo-400'
+                                            : 'text-gray-700 dark:text-gray-300'
+                                        }`}>
+                                          {item.icon}
+                                          <span>{item.name}</span>
+                                        </div>
                                       </Link>
-                                    </li>
-                                  ))}
-                                </ul>
+                                    ))}
+                                  </div>
+                                )}
                               </>
                             ) : (
-                              <Link href={item.href} legacyBehavior>
-                                <a className="block px-4 py-2 hover:bg-gray-200">{item.name}</a>
+                              <Link href={link.href} onClick={closeMenu}>
+                                <div className={`flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 ${
+                                  isActive(link.href)
+                                    ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-700 dark:text-indigo-400'
+                                    : 'text-gray-700 dark:text-gray-300'
+                                }`}>
+                                  {link.icon}
+                                  <span>{link.name}</span>
+                                </div>
                               </Link>
                             )}
-                          </li>
+                          </div>
                         ))}
-                      </ul>
+                      </nav>
                     </div>
-                  </>
-                ) : (
-                  <Link href={link.href} legacyBehavior>
-                    <a
-                      className={`px-4 py-2 rounded-full transition-colors duration-200 ${
-                        pathname === link.href ? 'bg-gray-700 text-white font-semibold' : 'hover:bg-gray-300 hover:text-gray-900'
-                      }`}
+                  )}
+                </div>
+
+                {/* User controls */}
+                <div className="ml-4">
+                  {user ? (
+                    <div className="flex items-center space-x-4">
+                      <div className="hidden xl:flex items-center space-x-3">
+                        <div className="bg-indigo-100 dark:bg-gray-700 p-1 rounded-full">
+                          <HiUser className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <span className="text-gray-700 dark:text-gray-300">{user.email}</span>
+                      </div>
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition duration-150 ease-in-out"
+                      >
+                        <HiLogout className="h-5 w-5" />
+                        <span className="hidden sm:inline">Logout</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={handleLogin}
+                      className="flex items-center space-x-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg transition duration-150 ease-in-out"
                     >
-                      {link.name}
-                    </a>
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-          {user ? (
-            <div className="flex items-center space-x-4">
-              <HiUser className="h-6 w-6 text-gray-700" />
-              <span className="text-gray-700 font-medium">{user.email}</span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center space-x-1 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition-colors duration-200"
-              >
-                <HiLogout className="h-5 w-5" />
-                <span>Logout</span>
-              </button>
+                      <HiLogin className="h-5 w-5" />
+                      <span>Login</span>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          ) : (
-            <button
-              onClick={handleLogin}
-              className="flex items-center space-x-1 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-200"
-            >
-              <HiLogin className="h-5 w-5" />
-              <span>Login</span>
-            </button>
-          )}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
