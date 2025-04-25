@@ -282,9 +282,9 @@ const sections = [
 export default function NetworkTopics() {
   return (
     <main className="space-y-12">
-      {sections.map((section, index) => (
+      {/* {sections.map((section, index) => (
         <Section key={index} title={section.title} content={section.content} />
-      ))}
+      ))} */}
     </main>
   );
 }

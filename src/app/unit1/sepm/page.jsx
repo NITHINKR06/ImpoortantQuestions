@@ -15,10 +15,10 @@ const SEPMImportantQuestions = () => {
     switch (activeComponent) {
       case "imp1":
         return <Imp1 />;
-      case "imp2":
-        return <Imp2 />;
-      case "imp3":
-        return <Imp3 />;
+      // case "imp2":
+      //   return <Imp2 />;
+      // case "imp3":
+      //   return <Imp3 />;
       default:
         return <Imp1 />;
     }
@@ -43,9 +43,7 @@ const SEPMImportantQuestions = () => {
           <h1 className="text-4xl font-extrabold tracking-wide">
             SEPM Important Questions
           </h1>
-          <p className="mt-2 text-lg opacity-90 pb-5">
-            In-depth answers on Context Modeling, Diagrams, Agile, XP, TDD, and Testing Models
-          </p>
+          
 
           {/* Buttons to switch between pages */}
           <div className="mb-6">
@@ -55,12 +53,12 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
               Diagrams
-            </button>
+            </button> */}
             {/* <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}

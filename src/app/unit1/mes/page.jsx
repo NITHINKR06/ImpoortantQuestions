@@ -16,8 +16,8 @@ const SEPMImportantQuestions = () => {
         return <Imp1 />;
       case "imp2":
         return <Imp2 />;
-      case "imp3":
-        return <ImageGallery />;
+      // case "imp3":
+        // return <ImageGallery />;
       default:
         return <Imp1 />;
     }
@@ -57,12 +57,12 @@ const SEPMImportantQuestions = () => {
               >
                 All Programs
               </button>
-              <button
+              {/* <button
                 className={buttonClasses("imp3")}
                 onClick={() => setActiveComponent("imp3")}
               >
                 Images
-              </button>
+              </button> */}
             </div>
           </div>
         </header>

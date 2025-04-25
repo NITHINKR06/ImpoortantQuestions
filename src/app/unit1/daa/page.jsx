@@ -13,8 +13,8 @@ const SEPMImportantQuestions = () => {
     switch (activeComponent) {
       case "imp1":
         return <Imp1 />;
-      case "imp2":
-        return <Imp2 />;
+      // case "imp2":
+        // return <Imp2 />;
       // case "imp3":
       //   return <Imp3 />;
       default:
@@ -50,12 +50,12 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
               Algorithm
-            </button>
+            </button> */}
             {/* <button
               className={buttonClasses("imp3")}
               onClick={() => setActiveComponent("imp3")}
