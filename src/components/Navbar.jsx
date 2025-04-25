@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthContext';
-import { 
-  HiMenu, 
-  HiX, 
-  HiChevronDown, 
-  HiLogout, 
-  HiLogin, 
+import {
+  HiMenu,
+  HiX,
+  HiChevronDown,
+  HiLogout,
+  HiLogin,
   HiUser,
   HiAcademicCap,
   HiHome,
@@ -88,8 +88,8 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { 
-      name: 'Home', 
+    {
+      name: 'Home',
       href: '/',
       icon: <HiHome className="h-5 w-5" />
     },
@@ -126,19 +126,19 @@ const Navbar = () => {
         { name: 'SEPM', href: '/unit3/sepm', icon: subjectIcons['SEPM'] },
       ]
     },
-    { 
-      name: 'Contact', 
+    {
+      name: 'Contact',
       href: '/contact',
       icon: <HiMail className="h-5 w-5" />
     },
   ];
 
   const isActive = (href) => pathname === href;
-  
+
   const getCurrentPageInfo = () => {
     const paths = pathname.split('/').filter(Boolean);
     if (paths.length >= 2) {
-      const unit = paths[0].toUpperCase().includes('UNIT') 
+      const unit = paths[0].toUpperCase().includes('UNIT')
         ? paths[0].charAt(0).toUpperCase() + paths[0].slice(1)
         : paths[0];
       const subject = paths[1].toUpperCase();
@@ -195,7 +195,7 @@ const Navbar = () => {
 
           {/* Mobile menu */}
           {isOpen && (
-            <div 
+            <div
               ref={mobileMenuRef}
               className="absolute z-50 inset-x-0 top-16 bg-white shadow-lg dark:bg-gray-900 transition-all duration-300 ease-in-out"
               style={{ maxHeight: '80vh', overflow: 'auto' }}
@@ -243,8 +243,8 @@ const Navbar = () => {
                             <div className="mb-2">
                               <button
                                 onClick={() => toggleDropdown(link.name)}
-                                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl 
-                                  ${activeDropdown === link.name 
+                                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl
+                                  ${activeDropdown === link.name
                                     ? 'bg-indigo-50 text-indigo-600 dark:bg-gray-800 dark:text-indigo-400'
                                     : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'}`}
                               >
@@ -252,26 +252,28 @@ const Navbar = () => {
                                   {link.icon}
                                   <span className="font-medium">{link.name}</span>
                                 </div>
-                                <HiChevronDown 
+                                <HiChevronDown
                                   className={`h-5 w-5 transition-transform duration-200 ${
                                     activeDropdown === link.name ? 'rotate-180' : ''
-                                  }`} 
+                                  }`}
                                 />
                               </button>
-                              
+
                               {activeDropdown === link.name && (
                                 <div className="mt-2 ml-5 border-l-2 border-indigo-200 dark:border-gray-700 pl-4 space-y-1">
                                   {link.dropdown.map((item) => (
                                     <Link
                                       key={item.href}
                                       href={item.href}
-                                      onClick={closeMenu}
                                     >
-                                      <div className={`flex items-center space-x-3 px-4 py-2 rounded-lg ${
-                                        isActive(item.href)
-                                          ? 'bg-indigo-100 text-indigo-700 font-medium dark:bg-gray-800 dark:text-indigo-400'
-                                          : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
-                                      }`}>
+                                      <div
+                                        onClick={closeMenu}
+                                        className={`flex items-center space-x-3 px-4 py-2 rounded-lg ${
+                                          isActive(item.href)
+                                            ? 'bg-indigo-100 text-indigo-700 font-medium dark:bg-gray-800 dark:text-indigo-400'
+                                            : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                                        }`}
+                                      >
                                         {item.icon}
                                         <span>{item.name}</span>
                                       </div>
@@ -283,13 +285,15 @@ const Navbar = () => {
                           ) : (
                             <Link
                               href={link.href}
-                              onClick={closeMenu}
                             >
-                              <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl ${
-                                isActive(link.href)
-                                  ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-800 dark:text-indigo-400'
-                                  : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
-                              }`}>
+                              <div
+                                onClick={closeMenu}
+                                className={`flex items-center space-x-3 px-4 py-3 rounded-xl ${
+                                  isActive(link.href)
+                                    ? 'bg-indigo-50 text-indigo-600 font-medium dark:bg-gray-800 dark:text-indigo-400'
+                                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                                }`}
+                              >
                                 {link.icon}
                                 <span className="font-medium">{link.name}</span>
                               </div>
@@ -341,13 +345,13 @@ const Navbar = () => {
                         >
                           {link.icon}
                           <span>{link.name}</span>
-                          <HiChevronDown 
+                          <HiChevronDown
                             className={`h-5 w-5 transition-transform duration-200 ${
                               activeDropdown === link.name ? 'rotate-180' : ''
-                            }`} 
+                            }`}
                           />
                         </button>
-                        
+
                         {activeDropdown === link.name && (
                           <div className="absolute z-50 left-0 mt-2 w-64 bg-white rounded-lg shadow-xl dark:bg-gray-800 border border-gray-100 dark:border-gray-700 py-2">
                             {link.dropdown.map((item) => (
@@ -395,7 +399,7 @@ const Navbar = () => {
                   >
                     <HiMenu className="h-6 w-6" />
                   </button>
-                  
+
                   {activeDropdown === 'menu' && (
                     <div className="absolute right-4 z-50 mt-2 w-64 bg-white rounded-lg shadow-xl dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
                       <nav className="py-2">
@@ -415,13 +419,13 @@ const Navbar = () => {
                                     {link.icon}
                                     <span>{link.name}</span>
                                   </div>
-                                  <HiChevronDown 
+                                  <HiChevronDown
                                     className={`h-5 w-5 transition-transform duration-200 ${
                                       activeSubDropdown === link.name ? 'rotate-180' : ''
-                                    }`} 
+                                    }`}
                                   />
                                 </button>
-                                
+
                                 {activeSubDropdown === link.name && (
                                   <div className="bg-gray-50 dark:bg-gray-700 py-2">
                                     {link.dropdown.map((item) => (
@@ -500,3 +504,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
