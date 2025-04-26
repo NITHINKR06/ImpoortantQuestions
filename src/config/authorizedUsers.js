@@ -1,11 +1,10 @@
 // List of authorized users who can access the website
 const authorizedUsers = [
-  'admin@example.com',
-  'user1@example.com',
-  'user2@example.com',
-  'admin@iques.in',
-  'nnm23cb053@nmamit.in',
-  'nnm24cb503@nmamit.in',
+  'admin@iques.com',
+  'user1@iques.com',
+  'user2@iques.com',
+  'nnmshravya@nmamit.in',
+  'nnmnithin@nmamit.in',
   // Add more authorized users as needed
 ];
 
