@@ -3,24 +3,26 @@ import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
 import Imp3 from './Imp3.jsx';
-import ProtectedPage from '@/app/ProtectedPage.jsx';
-
+import ProtectedPage from '../../ProtectedPage.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
   const [activeComponent, setActiveComponent] = useState("imp1");
 
-  // Function to render the active component
+  // State to hold the search query
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Function to render the active component with searchQuery prop
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "imp1":
-        return <Imp1 />;
+        return <Imp1 searchQuery={searchQuery} />;
       // case "imp2":
-      //   return <Imp2 />;
+      //   return <Imp2 searchQuery={searchQuery} />;
       // case "imp3":
-      //   return <Imp3 />;
+      //   return <Imp3 searchQuery={searchQuery} />;
       default:
-        return <Imp1 />;
+        return <Imp1 searchQuery={searchQuery} />;
     }
   };
 
@@ -43,10 +45,9 @@ const SEPMImportantQuestions = () => {
           <h1 className="text-4xl font-extrabold tracking-wide">
             SEPM Important Questions
           </h1>
-          
 
           {/* Buttons to switch between pages */}
-          <div className="mb-6">
+          <div className="mb-6 flex flex-wrap items-center">
             <button
               className={buttonClasses("imp1")}
               onClick={() => setActiveComponent("imp1")}
@@ -65,6 +66,14 @@ const SEPMImportantQuestions = () => {
             >
               Important 3
             </button> */}
+            {/* Search input */}
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="ml-auto px-3 py-2 border border-indigo-700 rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
           </div>
         </div>
       </header>

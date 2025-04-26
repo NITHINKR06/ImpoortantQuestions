@@ -221,14 +221,14 @@ const sections = [
     title: '8. OSPF and BGP',
     content: (
       <>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">OSPF (Open Shortest Path First):</h3>
+        <h3 className="text-xl font-bold text-indigo-800 mb-2">OSPF (Open Shortest Path First):</h3>
         <ul className="list-disc ml-8 text-gray-700 space-y-2">
           <li><strong>Type:</strong> Link-state IGP (Interior Gateway Protocol).</li>
           <li><strong>Algorithm:</strong> Dijkstra’s shortest path first.</li>
           <li><strong>Features:</strong> Fast convergence, supports VLSM, divides networks into areas.</li>
           <li><strong>Use Case:</strong> Enterprise networks (e.g., corporate LANs).</li>
         </ul>
-        <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">BGP (Border Gateway Protocol):</h3>
+        <h3 className="text-xl font-bold text-indigo-800 mt-4 mb-2">BGP (Border Gateway Protocol):</h3>
         <ul className="list-disc ml-8 text-gray-700 space-y-2">
           <li><strong>Type:</strong> Path-vector EGP (Exterior Gateway Protocol).</li>
           <li><strong>Function:</strong> Routes between Autonomous Systems (ASes) based on policies (e.g., ISP partnerships).</li>
@@ -245,7 +245,7 @@ const sections = [
         <p className="text-gray-700">
           CIDR (Classless Interdomain Routing) uses the notation IP/Prefix (e.g., 192.168.1.0/24) to denote an IP address and its associated network prefix, providing efficient IP allocation and improved routing flexibility compared to classful addressing.
         </p>
-        <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">Benefits:</h3>
+        <h3 className="text-xl font-bold text-indigo-800 mt-4 mb-2">Benefits:</h3>
         <ul className="list-disc ml-8 text-gray-700 space-y-2">
           <li>
             <strong>Efficient IP Allocation:</strong> Allows subnet masks that don’t follow traditional classful boundaries, reducing wasted IP addresses. For example, a /26 subnet offers 64 IP addresses, with 62 usable.
@@ -268,10 +268,10 @@ const sections = [
     content: (
       <>
         <p className="text-gray-700"><strong>Purpose:</strong> Splits IP into network and host portions.</p>
-        <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">Calculation Example:</h3>
+        <h3 className="text-xl font-bold text-indigo-800 mt-4 mb-2">Calculation Example:</h3>
         <p className="ml-8 text-gray-700">For 192.168.1.10/24 → Subnet Mask = 255.255.255.0.</p>
         <p className="ml-8 text-gray-700"><strong>Hosts:</strong> 2⁸ - 2 = 254 (reserves .0 for network and .255 for broadcast).</p>
-        <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">Variable-Length Subnet Masks (VLSM):</h3>
+        <h3 className="text-xl font-bold text-indigo-800 mt-4 mb-2">Variable-Length Subnet Masks (VLSM):</h3>
         <p className="ml-8 text-gray-700">Allows custom subnet sizes (e.g., /26 for 64 IPs).</p>
         <p className="ml-8 text-gray-700"><strong>Advantages:</strong> Reduces broadcast domains, improves security, and optimizes IP usage.</p>
       </>

@@ -276,15 +276,21 @@ const sections = [
         <p className="ml-8 text-gray-700"><strong>Advantages:</strong> Reduces broadcast domains, improves security, and optimizes IP usage.</p>
       </>
     )
-  }
+  },
 ];
 
-export default function NetworkTopics() {
+export default function NetworkTopics({ searchQuery = "" }) {
+  // Filter sections based on searchQuery
+  const filteredSections = sections.filter(section =>
+    section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    section.content.props.children.toString().toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <main className="space-y-12">
-      {/* {sections.map((section, index) => (
+      {filteredSections.map((section, index) => (
         <Section key={index} title={section.title} content={section.content} />
-      ))} */}
+      ))}
     </main>
   );
 }

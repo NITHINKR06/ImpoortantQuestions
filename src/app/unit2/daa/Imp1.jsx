@@ -45,7 +45,7 @@ const QandA = ({ question, answer, bulletPoints }) => {
   );
 };
 
-export default function Daa() {
+export default function Daa({ searchQuery = "" }) {
   // Sample data - replace with your actual content
   const imagesData = [
     {
@@ -99,6 +99,19 @@ export default function Daa() {
     }
   ];
 
+  // Filter imagesData based on searchQuery
+  const filteredImages = imagesData.filter(item =>
+    item.alt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Filter qaData based on searchQuery
+  const filteredQA = qaData.filter(item =>
+    item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (item.bulletPoints && item.bulletPoints.some(point => point.toLowerCase().includes(searchQuery.toLowerCase())))
+  );
+
   return (
     <main className="container mx-auto px-4 py-8 space-y-12">
       {/* Introduction Section */}
@@ -111,7 +124,7 @@ export default function Daa() {
       
       {/* Images with Descriptions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {imagesData.map((item, index) => (
+        {filteredImages.map((item, index) => (
           <ImageWithDescription
             key={index}
             imageUrl={item.imageUrl}
@@ -126,7 +139,7 @@ export default function Daa() {
         title="Frequently Asked Questions" 
         content={
           <div className="space-y-4">
-            {qaData.map((item, index) => (
+            {filteredQA.map((item, index) => (
               <QandA 
                 key={index}
                 question={item.question}

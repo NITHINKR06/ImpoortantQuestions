@@ -2,23 +2,26 @@
 import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
-import ProtectedPage from '@/app/ProtectedPage.jsx';
+import ProtectedPage from '../../ProtectedPage.jsx';
 
 const SEPMImportantQuestions = () => {
   // State to track the active component
   const [activeComponent, setActiveComponent] = useState("imp1");
 
-  // Function to render the active component
+  // State to hold the search query
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Function to render the active component with searchQuery prop
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "imp1":
-        return <Imp1 />;
+        return <Imp1 searchQuery={searchQuery} />;
       // case "imp2":
-        // return <Imp2 />;
+        // return <Imp2 searchQuery={searchQuery} />;
       // case "imp3":
-      //   return <Imp3 />;
+      //   return <Imp3 searchQuery={searchQuery} />;
       default:
-        return <Imp1 />;
+        return <Imp1 searchQuery={searchQuery} />;
     }
   };
 
@@ -34,50 +37,58 @@ const SEPMImportantQuestions = () => {
 
   return (
     <ProtectedPage>
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      {/* Fixed Header */}
-      <header className="text-black py-6 shadow-xs">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl font-extrabold tracking-wide">
-            DAA Important Questions
-          </h1>
-          <br />
-          {/* Buttons to switch between pages */}
-          <div className="mb-6">
-            <button
-              className={buttonClasses("imp1")}
-              onClick={() => setActiveComponent("imp1")}
-            >
-              Important 1
-            </button>
-            {/* <button
-              className={buttonClasses("imp2")}
-              onClick={() => setActiveComponent("imp2")}
-            >
-              Algorithm
-            </button> */}
-            {/* <button
-              className={buttonClasses("imp3")}
-              onClick={() => setActiveComponent("imp3")}
-            >
-              Important 3
-            </button> */}
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+        {/* Fixed Header */}
+        <header className="text-black py-6 shadow-xs">
+          <div className="max-w-6xl mx-auto px-6">
+            <h1 className="text-4xl font-extrabold tracking-wide">
+              DAA Important Questions
+            </h1>
+            <br />
+            {/* Buttons to switch between pages */}
+            <div className="mb-6 flex flex-wrap items-center">
+              <button
+                className={buttonClasses("imp1")}
+                onClick={() => setActiveComponent("imp1")}
+              >
+                Important 1
+              </button>
+              {/* <button
+                className={buttonClasses("imp2")}
+                onClick={() => setActiveComponent("imp2")}
+              >
+                Algorithm
+              </button> */}
+              {/* <button
+                className={buttonClasses("imp3")}
+                onClick={() => setActiveComponent("imp3")}
+              >
+                Important 3
+              </button> */}
+              {/* Search input */}
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="ml-auto px-3 py-2 border border-indigo-700 rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Active Component Content */}
-      <div className="max-w-6xl mx-auto px-6 py-10">
-        {renderActiveComponent()}
+        {/* Active Component Content */}
+        <div className="max-w-6xl mx-auto px-6 py-10">
+          {renderActiveComponent()}
+        </div>
+
+        {/* Footer */}
+        {/* <footer className="bg-gray-800 text-gray-300 py-4 mt-12">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <p className="text-sm">&copy; 2025 SEPM Documentation. All rights reserved.</p>
+          </div>
+        </footer> */}
       </div>
-
-      {/* Footer */}
-      {/* <footer className="bg-gray-800 text-gray-300 py-4 mt-12">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-sm">&copy; 2025 SEPM Documentation. All rights reserved.</p>
-        </div>
-      </footer> */}
-    </div>
     </ProtectedPage>
   );
 };

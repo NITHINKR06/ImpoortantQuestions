@@ -42,7 +42,16 @@ export default function MathsPage() {
   
   // Check if on mobile view
   const [isMobile, setIsMobile] = useState(false);
-  
+
+  // Search query state
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filtered images based on search query
+  const filteredImages = images.filter(image =>
+    image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    image.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Handle window resize
   useEffect(() => {
     const checkIfMobile = () => {
@@ -58,12 +67,19 @@ export default function MathsPage() {
   }, []);
   
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % filteredImages.length);
   };
   
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
   };
+
+  // Reset currentImageIndex if filteredImages changes and current index is out of range
+  useEffect(() => {
+    if (currentImageIndex >= filteredImages.length) {
+      setCurrentImageIndex(0);
+    }
+  }, [filteredImages, currentImageIndex]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -111,6 +127,17 @@ export default function MathsPage() {
       <div className="max-w-6xl mx-auto p-4 md:p-6">
         {/* Desktop Header */}
         <h1 className="hidden md:block text-3xl font-bold text-gray-800 mb-6">Mathematics Resources</h1>
+
+        {/* Search input */}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full md:w-1/3 px-3 py-2 border border-indigo-700 rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
         
         {/* PDF Viewer Section */}
         <div 
@@ -152,43 +179,49 @@ export default function MathsPage() {
           
           <div className="p-4 md:p-6">
             {/* Main Image Display */}
-            <div className="mb-4 md:mb-6 relative">
-              <img 
-                src={images[currentImageIndex].src} 
-                alt={images[currentImageIndex].title}
-                className="w-full h-48 md:h-64 object-contain bg-gray-100 rounded-lg"
-              />
-              
-              {/* Navigation Arrows */}
-              <button 
-                onClick={prevImage}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-1 md:p-2 rounded-full shadow-md"
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={isMobile ? 20 : 24} />
-              </button>
-              <button 
-                onClick={nextImage}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-1 md:p-2 rounded-full shadow-md"
-                aria-label="Next image"
-              >
-                <ChevronRight size={isMobile ? 20 : 24} />
-              </button>
-            </div>
+            {filteredImages.length > 0 ? (
+              <div className="mb-4 md:mb-6 relative">
+                <img 
+                  src={filteredImages[currentImageIndex].src} 
+                  alt={filteredImages[currentImageIndex].title}
+                  className="w-full h-48 md:h-64 object-contain bg-gray-100 rounded-lg"
+                />
+                
+                {/* Navigation Arrows */}
+                <button 
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-1 md:p-2 rounded-full shadow-md"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={isMobile ? 20 : 24} />
+                </button>
+                <button 
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-1 md:p-2 rounded-full shadow-md"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={isMobile ? 20 : 24} />
+                </button>
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">No images match your search.</p>
+            )}
             
             {/* Image Details */}
-            <div className="mb-4 md:mb-6">
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
-                {images[currentImageIndex].title}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600">
-                {images[currentImageIndex].description}
-              </p>
-            </div>
+            {filteredImages.length > 0 && (
+              <div className="mb-4 md:mb-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
+                  {filteredImages[currentImageIndex].title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600">
+                  {filteredImages[currentImageIndex].description}
+                </p>
+              </div>
+            )}
             
             {/* Thumbnail Navigation */}
             <div className="grid grid-cols-4 gap-1 md:gap-2">
-              {images.map((image, index) => (
+              {filteredImages.map((image, index) => (
                 <div 
                   key={image.id}
                   onClick={() => setCurrentImageIndex(index)}
