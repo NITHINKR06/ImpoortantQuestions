@@ -180,7 +180,7 @@ const Navbar = () => {
                     <HiAcademicCap className="h-6 w-6" />
                   </div>
                   <span className="font-bold text-lg text-gray-900 dark:text-white">
-                    Exam Portal
+                    IQues
                   </span>
                 </div>
               </Link>
@@ -318,7 +318,7 @@ const Navbar = () => {
                       <HiAcademicCap className="h-6 w-6" />
                     </div>
                     <span className="font-bold text-xl text-gray-900 dark:text-white">
-                      Exam Portal
+                      IQues
                     </span>
                   </div>
                 </Link>
