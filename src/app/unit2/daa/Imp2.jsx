@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
-import BFS from '../../images/daa/BFS.jpg';
-import DFS from '../../images/daa/DFS.jpg';
-import AVL from '../../images/daa/AVL.jpg';
-import HEAPSORT from '../../images/daa/HEAPSORT.jpg';
-import WARSHALLS from '../../images/daa/WARSHALLS.png';
-import FLOYDS from '../../images/daa/FLOYDS.png';
-import KNAPSACK from '../../images/daa/KNAPSACK.png';
-import HORSPOOL from '../../images/daa/HORSPOOL.jpg';
+import BFS from '../../images/daa/daa1/BFS.jpg';
+import DFS from '../../images/daa/daa1/DFS.jpg';
+import AVL from '../../images/daa/daa1/AVL.jpg';
+import HEAPSORT from '../../images/daa/daa1/HEAPSORT.jpg';
+import WARSHALLS from '../../images/daa/daa1/WARSHALLS.png';
+import FLOYDS from '../../images/daa/daa1/FLOYDS.png';
+import KNAPSACK from '../../images/daa/daa1/KNAPSACK.png';
+import HORSPOOL from '../../images/daa/daa1/HORSPOOL.jpg';
+import ComparisonSort from '../../images/daa/daa1/Comparison count sort.jpg';
+import DistributionCountSort from '../../images/daa/daa1/Distributioncountsort.jpg';
 
 export default function Imp2() {
   // Helper function to ensure YouTube URL is in embed format
@@ -83,6 +85,22 @@ export default function Imp2() {
       desc: 'This illustration shows the HORSPOOL algorithm in action.',
       // Replace VIDEO_ID_HORSPOOL with a valid YouTube video ID
       youtube: 'https://www.youtube.com/embed/VIDEO_ID_HORSPOOL'
+    },
+
+    { 
+      src: ComparisonSort, 
+      alt: ' Comparison Sort',
+      desc: 'This illustration shows the Comparison Sort algorithm in action.', 
+      // Replace VIDEO_ID_HORSPOOL with a valid YouTube video ID
+      youtube: 'https://www.youtube.com/embed/ComparisonSort'
+    },
+
+    { 
+      src: ComparisonSort, 
+      alt: 'Distribution Count Sort', 
+      desc: 'This illustration shows the Distribution Count Sort algorithm in action.',
+      // Replace VIDEO_ID_HORSPOOL with a valid YouTube video ID
+      youtube: 'https://www.youtube.com/embed/ComparisonSort'
     },
     // Add more images as needed
   ];
