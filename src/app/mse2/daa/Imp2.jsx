@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
-import BFS from '../../images/daa/BFS.jpg';
-import DFS from '../../images/daa/DFS.jpg';
-import AVL from '../../images/daa/AVL.jpg';
-import HEAPSORT from '../../images/daa/HEAPSORT.jpg';
-import WARSHALLS from '../../images/daa/WARSHALLS.png';
-import FLOYDS from '../../images/daa/FLOYDS.png';
-import KNAPSACK from '../../images/daa/KNAPSACK.png';
-import HORSPOOL from '../../images/daa/HORSPOOL.jpg';
+import BFS from '../../images/daa/daa1/BFS.jpg';
+import DFS from '../../images/daa/daa1/DFS.jpg';
+import AVL from '../../images/daa/daa1/AVL.jpg';
+import HEAPSORT from '../../images/daa/daa1/HEAPSORT.jpg';
+import WARSHALLS from '../../images/daa/daa1/WARSHALLS.png';
+import FLOYDS from '../../images/daa/daa1/FLOYDS.png';
+import KNAPSACK from '../../images/daa/daa1/KNAPSACK.png';
+import HORSPOOL from '../../images/daa/daa1/HORSPOOL.jpg';
 
 export default function Imp2() {
   // Helper function to ensure YouTube URL is in embed format
