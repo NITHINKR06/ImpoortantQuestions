@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
 import BFS from '../../images/daa/daa1/BFS.jpg';
-import DFS from '../../images/daa/daa1/DFS.jpg';
-import AVL from '../../images/daa/daa1/AVL.jpg';
-import HEAPSORT from '../../images/daa/daa1/HEAPSORT.jpg';
-import WARSHALLS from '../../images/daa/daa1/WARSHALLS.png';
-import FLOYDS from '../../images/daa/daa1/FLOYDS.png';
-import KNAPSACK from '../../images/daa/daa1/KNAPSACK.png';
-import HORSPOOL from '../../images/daa/daa1/HORSPOOL.jpg';
 
 export default function Imp2() {
   // Helper function to ensure YouTube URL is in embed format
@@ -35,55 +28,11 @@ export default function Imp2() {
   const images = [
     { 
       src: BFS, 
-      alt: 'BFS', 
-      desc: 'This illustration shows the Breadth First Search algorithm in action.',
-      youtube: 'https://www.youtube.com/embed/0_SIA72bAhk' // Ensure this ID is valid
+      alt: '', 
+      desc: '',
+      youtube: '' // Ensure this ID is valid
     },
-    { 
-      src: DFS, 
-      alt: 'DFS', 
-      desc: 'This illustration shows the Depth First Search algorithm in action.',
-      youtube: 'https://www.youtube.com/embed/UWqjBUxuniM'
-    },
-    { 
-      src: AVL, 
-      alt: 'AVL', 
-      desc: 'Construction of AVL tree',
-      // Replace VIDEO_ID_AVL with a valid YouTube video ID
-      youtube: 'https://www.youtube.com/embed/VIDEO_ID_AVL'
-    },
-    { 
-      src: HEAPSORT, 
-      alt: 'HeapSort', 
-      desc: 'This illustration shows the heapsort algorithm in action.',
-      // Replace VIDEO_ID_HEAPSORT with a valid YouTube video ID
-      youtube: 'https://www.youtube.com/embed/VIDEO_ID_HEAPSORT'
-    },
-    { 
-      src: WARSHALLS, 
-      alt: 'WARSHALLS', 
-      desc: 'This illustration shows the WARSHALLS algorithm in action.',
-      youtube: 'https://www.youtube.com/embed/_-p8zhizock'
-    },
-    { 
-      src: FLOYDS, 
-      alt: 'FLOYDS', 
-      desc: 'This illustration shows the FLOYDS algorithm in action.',
-      youtube: 'https://www.youtube.com/embed/oNI0rf2P9gE'
-    },
-    { 
-      src: KNAPSACK, 
-      alt: 'KNAPSACK', 
-      desc: 'This illustration shows the KNAPSACK algorithm in action.',
-      youtube: 'https://www.youtube.com/embed/nLmhmB6NzcM'
-    },
-    { 
-      src: HORSPOOL, 
-      alt: 'HORSPOOL', 
-      desc: 'This illustration shows the HORSPOOL algorithm in action.',
-      // Replace VIDEO_ID_HORSPOOL with a valid YouTube video ID
-      youtube: 'https://www.youtube.com/embed/VIDEO_ID_HORSPOOL'
-    },
+
     // Add more images as needed
   ];
 

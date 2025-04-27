@@ -16,8 +16,8 @@ const SEPMImportantQuestions = () => {
     switch (activeComponent) {
       case "imp1":
         return <Imp1 searchQuery={searchQuery} />;
-      case "imp2":
-        return <Imp2 searchQuery={searchQuery} />;
+      // case "imp2":
+      //   return <Imp2 searchQuery={searchQuery} />;
       default:
         return <Imp1 searchQuery={searchQuery} />;
     }
@@ -51,12 +51,12 @@ const SEPMImportantQuestions = () => {
             >
               Important 1
             </button>
-            <button
+            {/* <button
               className={buttonClasses("imp2")}
               onClick={() => setActiveComponent("imp2")}
             >
               Important 2
-            </button>
+            </button> */}
             {/* Search input */}
             <input
               type="text"

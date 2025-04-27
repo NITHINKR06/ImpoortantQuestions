@@ -119,9 +119,6 @@ export default function Daa({ searchQuery = "" }) {
     document.body.removeChild(link);
   };
 
-  
-
-
   // Filter qaData based on searchQuery
   const filteredQA = qaData.filter(item =>
     item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
