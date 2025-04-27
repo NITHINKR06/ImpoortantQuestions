@@ -83,8 +83,6 @@ export default function Imp1() {
   return (
     <div className=" bg-gray-50">
       <div className="max-w-6xl mx-auto p-4 md:p-6">
-        {/* Desktop Header */}
-        
         {/* PDF Viewer Section */}
         <div 
           id="pdf-section" 
@@ -122,7 +120,6 @@ export default function Imp1() {
             />
           </div>
         </div>
-        
       </div>
  
       <div className="max-w-6xl mx-auto p-4 md:p-6">

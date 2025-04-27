@@ -102,7 +102,7 @@ const Navbar = () => {
     subjectIcons[subject] || <HiBookOpen className="h-5 w-5" />;
 
   const navLinks = [
-    { name: 'Home', href: '/', icon: <HiHome className="h-5 w-5" /> },
+    { name: 'Home', href: 'https://iques.vercel.app', icon: <HiHome className="h-5 w-5" /> },
     {
       name: 'Unit 1',
       icon: <HiAcademicCap className="h-5 w-5" />,

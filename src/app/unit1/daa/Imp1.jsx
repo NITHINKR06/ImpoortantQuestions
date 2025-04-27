@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { File, ChevronLeft, ChevronRight, Maximize, Minimize, Download, Menu, X } from 'lucide-react';
 
 // Reusable Section component defined locally
 const Section = ({ title, content }) => {
@@ -31,6 +32,11 @@ const QandA = ({ question, answer, bulletPoints }) => {
 };
 
 export default function Daa({ searchQuery = "" }) {
+  // PDF file path
+  const pdfPath = "/DAAimpUNIT1.pdf";
+
+  // PDF viewer state
+  const [pdfFullscreen, setPdfFullscreen] = useState(false);
   // Sample data - replace with your actual content
   // const imagesData = [
   //   {
@@ -84,11 +90,37 @@ export default function Daa({ searchQuery = "" }) {
     }
   ];
 
-  // // Filter imagesData based on searchQuery
-  // const filteredImages = imagesData.filter(item =>
-  //   item.alt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //   item.description.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+    const [isMobile, setIsMobile] = useState(false);
+    
+    // Handle window resize
+    useEffect(() => {
+      const checkIfMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      
+      checkIfMobile();
+      window.addEventListener('resize', checkIfMobile);
+      
+      return () => {
+        window.removeEventListener('resize', checkIfMobile);
+      };
+    }, []);
+
+  const handleDownloadPDF = () => {
+    // Create an anchor element and set properties
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.download = "DAA_UNIT_5.pdf";
+    // Append to the document
+    document.body.appendChild(link);
+    // Trigger the download
+    link.click();
+    // Clean up
+    document.body.removeChild(link);
+  };
+
+  
+
 
   // Filter qaData based on searchQuery
   const filteredQA = qaData.filter(item =>
@@ -99,6 +131,46 @@ export default function Daa({ searchQuery = "" }) {
 
   return (
     <main className="container mx-auto px-4 py-8 space-y-12">
+
+      <div className="max-w-6xl mx-auto p-4 md:p-6">
+        {/* PDF Viewer Section */}
+        <div 
+          id="pdf-section" 
+          className={`bg-black rounded-lg shadow-md mb-6 overflow-hidden ${pdfFullscreen ? 'fixed inset-0 z-50 p-4' : ''}`}
+        >
+          <div className="flex items-center justify-between p-3 md:p-4 bg-gray-300 text-black">
+            <div className="flex items-center">
+              <File className="mr-2" size={isMobile ? 18 : 20} />
+              <h2 className="text-lg md:text-xl font-semibold">DAA Unit 1</h2>
+            </div>
+            <div className="flex items-center space-x-1 md:space-x-2">
+              <button 
+                className="p-1 md:p-2 hover:bg-gray-700 rounded-full"
+                onClick={() => setPdfFullscreen(!pdfFullscreen)}
+                aria-label={pdfFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              >
+                {pdfFullscreen ? <Minimize size={isMobile ? 18 : 20} /> : <Maximize size={isMobile ? 18 : 20} />}
+              </button>
+              <button 
+                className="p-1 md:p-2 hover:bg-gray-700 rounded-full"
+                onClick={handleDownloadPDF}
+                aria-label="Download PDF"
+              >
+                <Download size={isMobile ? 18 : 20} />
+              </button>
+            </div>
+          </div>
+          
+          <div className={`bg-gray-100 ${pdfFullscreen ? 'h-full' : 'h-64 md:h-96'} relative`}>
+            {/* This is where we'd implement the PDF viewer */}
+            <iframe 
+              src={pdfPath} 
+              title="DAA Unit 5 PDF"
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
       
       {/* Q&A Section with bullet points */}
       <Section 
