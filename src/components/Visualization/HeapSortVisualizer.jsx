@@ -1,4 +1,3 @@
-// pages/heap-sort-visualizer.jsx
 "use client";
 import React, { useState, useEffect } from "react";
 
@@ -163,16 +162,15 @@ export default function HeapSortVisualizer() {
 
       {/* Array Display */}
       <div className="mb-8">
-        <div className="flex justify-center mb-2">
+        <div className="flex justify-center mb-2 flex-wrap">
           {currentArray.map((item, index) => (
             <div
               key={index}
               className={`flex items-center justify-center w-12 h-12 m-1 text-lg font-bold rounded-md
-                ${
-                  currentIndices.includes(index)
-                    ? "bg-yellow-300 border-2 border-yellow-500"
-                    : "bg-white border-2 border-gray-300"
-                }`}
+                ${currentIndices.includes(index)
+                  ? "bg-yellow-300 border-2 border-yellow-500"
+                  : "bg-white border-2 border-gray-300"}
+                sm:w-10 sm:h-10 sm:text-sm`}  
             >
               {item}
             </div>
@@ -185,7 +183,7 @@ export default function HeapSortVisualizer() {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-wrap justify-center gap-3 mb-6">
+      <div className="flex flex-wrap justify-center gap-3">
         <button
           onClick={stepBackward}
           disabled={currentStep <= 0}
