@@ -7,7 +7,6 @@ export default function HeapSortVisualizer() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [speed, setSpeed] = useState(1000);
-  const [highlighted, setHighlighted] = useState({ indices: [], action: "" });
 
   // Generate sorting steps initially
   useEffect(() => {
@@ -20,35 +19,36 @@ export default function HeapSortVisualizer() {
     const steps = [];
     const n = arr.length;
 
-    // Helper function to heapify a subtree
+    // Helper function to heapify a subtree rooted at index i
     const heapify = (arr, n, i) => {
-      let largest = i;
-      let left = 2 * i + 1;
-      let right = 2 * i + 2;
+      let largest = i; // Initialize largest as root
+      let left = 2 * i + 1; // Left child
+      let right = 2 * i + 2; // Right child
 
+      // If left child is larger than root
       if (left < n && arr[left] > arr[largest]) {
         largest = left;
       }
+
+      // If right child is larger than largest so far
       if (right < n && arr[right] > arr[largest]) {
         largest = right;
       }
 
+      // If largest is not root, swap it with the largest element
       if (largest !== i) {
-        [arr[i], arr[largest]] = [arr[largest], arr[i]];
+        [arr[i], arr[largest]] = [arr[largest], arr[i]]; // Swap
+
+        // Push the swap step into sorting steps
         steps.push({
           array: [...arr],
-          description: `Swap ${arr[largest]} with ${arr[i]} and heapify subtree rooted at index ${largest}`,
+          description: `Swap ${arr[largest]} with ${arr[i]} and heapify the subtree.`,
           indices: [i, largest],
           action: "swap",
         });
+
+        // Heapify the affected subtree recursively
         heapify(arr, n, largest);
-      } else {
-        steps.push({
-          array: [...arr],
-          description: `Node at index ${i} is larger than its children. No swap needed.`,
-          indices: [i],
-          action: "heapify-check",
-        });
       }
     };
 
@@ -60,6 +60,7 @@ export default function HeapSortVisualizer() {
       action: "start-heap",
     });
 
+    // Build the max heap from the last non-leaf node towards the root node
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
       heapify(arr, n, i);
     }
@@ -73,14 +74,18 @@ export default function HeapSortVisualizer() {
 
     // Step 2: Extract elements from heap
     for (let i = n - 1; i > 0; i--) {
+      // Swap root (maximum value) with the last element
       [arr[0], arr[i]] = [arr[i], arr[0]];
+
+      // Push the swap step into sorting steps
       steps.push({
         array: [...arr],
-        description: `Swap root ${arr[i]} with element ${arr[0]}. Heapify the root again.`,
+        description: `Swap root ${arr[i]} with element ${arr[0]}. Heapify the root.`,
         indices: [0, i],
         action: "swap-root",
       });
 
+      // Heapify the reduced heap
       heapify(arr, i, 0);
     }
 
@@ -170,7 +175,7 @@ export default function HeapSortVisualizer() {
                 ${currentIndices.includes(index)
                   ? "bg-yellow-300 border-2 border-yellow-500"
                   : "bg-white border-2 border-gray-300"}
-                sm:w-10 sm:h-10 sm:text-sm`}  
+                sm:w-10 sm:h-10 sm:text-sm`} 
             >
               {item}
             </div>
@@ -183,7 +188,7 @@ export default function HeapSortVisualizer() {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-3 mb-6 space-y-3 sm:flex-col">
         <button
           onClick={stepBackward}
           disabled={currentStep <= 0}

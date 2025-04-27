@@ -1,4 +1,3 @@
-import HeapSortVisualizer from '@/components/Visualization/HeapSortVisualizer';
 import InsertionSortVisualizer from '@/components/Visualization/IS';
 import React from 'react';
 
@@ -161,7 +160,6 @@ export default function Daa({ searchQuery = "" }) {
         }
       />
       <InsertionSortVisualizer/>
-      <HeapSortVisualizer/>
 
     </main>
   );
