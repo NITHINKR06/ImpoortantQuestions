@@ -16,8 +16,8 @@ const SEPMImportantQuestions = () => {
     switch (activeComponent) {
       case "imp1":
         return <Imp1 searchQuery={searchQuery} />;
-      // case "imp2":
-        // return <Imp2 searchQuery={searchQuery} />;
+      case "imp2":
+        return <Imp2 searchQuery={searchQuery} />;
       // case "imp3":
       //   return <Imp3 searchQuery={searchQuery} />;
       default:
@@ -42,7 +42,7 @@ const SEPMImportantQuestions = () => {
         <header className="text-black py-6 shadow-xs">
           <div className="max-w-6xl mx-auto px-6">
             <h1 className="text-4xl font-extrabold tracking-wide">
-              DAA Important Questions
+              DAA Unit 1 
             </h1>
             <br />
             {/* Buttons to switch between pages */}
@@ -53,12 +53,12 @@ const SEPMImportantQuestions = () => {
               >
                 Important 1
               </button>
-              {/* <button
+              <button
                 className={buttonClasses("imp2")}
                 onClick={() => setActiveComponent("imp2")}
               >
                 Algorithm
-              </button> */}
+              </button>
               {/* <button
                 className={buttonClasses("imp3")}
                 onClick={() => setActiveComponent("imp3")}

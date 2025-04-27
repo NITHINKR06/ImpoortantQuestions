@@ -10,21 +10,6 @@ const Section = ({ title, content }) => {
   );
 };
 
-// ImageWithDescription component
-const ImageWithDescription = ({ imageUrl, alt, description }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img 
-        src={imageUrl || "/api/placeholder/600/400"} 
-        alt={alt || "Image description"} 
-        className="w-full h-64 object-cover"
-      />
-      <div className="p-4">
-        <p className="text-gray-700">{description}</p>
-      </div>
-    </div>
-  );
-};
 
 // Enhanced QandA component with bullet points support
 const QandA = ({ question, answer, bulletPoints }) => {
@@ -47,23 +32,23 @@ const QandA = ({ question, answer, bulletPoints }) => {
 
 export default function Daa({ searchQuery = "" }) {
   // Sample data - replace with your actual content
-  const imagesData = [
-    {
-      imageUrl: "/api/placeholder/600/400",
-      alt: "First image description",
-      description: "This is the description for the first image. It provides context and details about what's shown in the image."
-    },
-    {
-      imageUrl: "/api/placeholder/600/400",
-      alt: "Second image description",
-      description: "This is the description for the second image. It explains what this specific image represents."
-    },
-    {
-      imageUrl: "/api/placeholder/600/400",
-      alt: "Third image description",
-      description: "This is the description for the third image. It contains information related to the visual content."
-    }
-  ];
+  // const imagesData = [
+  //   {
+  //     imageUrl: SS,
+  //     alt: "Selection sort and Bubble sort algo",
+  //     description: "  "
+  //   },
+  //   {
+  //     imageUrl: "/api/placeholder/600/400",
+  //     alt: "Second image description",
+  //     description: "This is the description for the second image. It explains what this specific image represents."
+  //   },
+  //   {
+  //     imageUrl: "/api/placeholder/600/400",
+  //     alt: "Third image description",
+  //     description: "This is the description for the third image. It contains information related to the visual content."
+  //   }
+  // ];
 
   // Enhanced qaData with bullet points
   const qaData = [
@@ -99,11 +84,11 @@ export default function Daa({ searchQuery = "" }) {
     }
   ];
 
-  // Filter imagesData based on searchQuery
-  const filteredImages = imagesData.filter(item =>
-    item.alt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // // Filter imagesData based on searchQuery
+  // const filteredImages = imagesData.filter(item =>
+  //   item.alt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //   item.description.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   // Filter qaData based on searchQuery
   const filteredQA = qaData.filter(item =>
@@ -114,25 +99,6 @@ export default function Daa({ searchQuery = "" }) {
 
   return (
     <main className="container mx-auto px-4 py-8 space-y-12">
-      {/* Introduction Section */}
-      <Section 
-        title="Image Gallery with Descriptions" 
-        content={
-          <p>Below you'll find a collection of images with detailed descriptions to help you understand the content better.</p>
-        } 
-      />
-      
-      {/* Images with Descriptions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredImages.map((item, index) => (
-          <ImageWithDescription
-            key={index}
-            imageUrl={item.imageUrl}
-            alt={item.alt}
-            description={item.description}
-          />
-        ))}
-      </div>
       
       {/* Q&A Section with bullet points */}
       <Section 
@@ -153,3 +119,58 @@ export default function Daa({ searchQuery = "" }) {
     </main>
   );
 }
+
+
+// ImageWithDescription component
+// const ImageWithDescription = ({ imageUrl, alt, description }) => {
+//   const isImportedImage = typeof imageUrl !== 'string';  // imported images are NOT strings
+  
+//   return (
+//     <div className="bg-white rounded-lg shadow-md overflow-hidden">
+//       <div className="relative w-full">
+//         {isImportedImage ? (
+//           // For imported local images like SS_BS
+//           <Image 
+//             src={imageUrl}
+//             alt={alt || "Image description"}
+//             className="object-contain w-full h-auto"
+//           />
+//         ) : (
+//           // For string URLs like "/api/placeholder/600/400"
+//           <Image 
+//             src={imageUrl}
+//             alt={alt || "Image description"}
+//             width={600}  // You can adjust these
+//             height={400}
+//             className="object-contain w-full h-auto"
+//           />
+//         )}
+//       </div>
+//       <div className="p-4">
+//         <p className="text-gray-700">{description}</p>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+{/* Introduction Section */}
+      {/* <Section 
+        title="Image Gallery with Descriptions" 
+        content={
+          <p>Below you'll find a collection of images with detailed descriptions to help you understand the content better.</p>
+        } 
+      /> */}
+      
+      {/* Images with Descriptions */}
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredImages.map((item, index) => (
+          <ImageWithDescription
+            key={index}
+            imageUrl={item.imageUrl}
+            alt={item.alt}
+            description={item.description}
+          />
+        ))}
+      </div> */}
+      
