@@ -1,3 +1,5 @@
+import HeapSortVisualizer from '@/components/Visualization/HeapSortVisualizer';
+import InsertionSortVisualizer from '@/components/Visualization/IS';
 import React from 'react';
 
 // Reusable Section component defined locally
@@ -150,6 +152,17 @@ export default function Daa({ searchQuery = "" }) {
           </div>
         } 
       />
+
+      {/* Visualization Section */}
+      <Section 
+        title="Insertion Sort Visualization" 
+        content={
+          <p>Below is a visualization of the Insertion Sort algorithm. You can interact with it to see how the algorithm works step by step.</p>
+        }
+      />
+      <InsertionSortVisualizer/>
+      <HeapSortVisualizer/>
+
     </main>
   );
 }
