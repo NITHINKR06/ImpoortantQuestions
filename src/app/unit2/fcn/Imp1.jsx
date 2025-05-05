@@ -4,33 +4,33 @@ const sections = [
   {
     title: '',
     content: (
-      <div className="max-w-5xl mx-auto space-y-8">
+      <div className="max-w-5xl mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center">IPv4 vs. IPv6 Headers</h2>
-
+  
         {/* Introduction */}
         <p className="text-gray-700 text-center max-w-3xl mx-auto">
           IPv4 and IPv6 are protocols used for routing packets across networks, with differences in header structures and capabilities.
         </p>
-
+  
         {/* IPv4 Header Fields */}
-        <div className="bg-blue-50 p-6 rounded-xl shadow space-y-4">
+        <div className=" rounded-xl  space-y-4">
           <h3 className="text-2xl font-bold text-blue-800">IPv4 Header Key Fields</h3>
           <div className="space-y-4">
             {[
-              { field: "Version", description: "Indicates the IP version (IPv4)", size: "4 bits" },
-              { field: "IHL (Internet Header Length)", description: "Specifies the length of the header in 32-bit words", size: "4 bits" },
-              { field: "Type of Service", description: "Specifies the quality of service parameters", size: "8 bits" },
-              { field: "Total Length", description: "Length of the entire packet (header + data) in bytes", size: "16 bits" },
-              { field: "Identification", description: "Unique identifier for the packet, used for fragmentation and reassembly", size: "16 bits" },
-              { field: "Flags", description: "Control flags for fragmentation (e.g., 'Don't Fragment')", size: "3 bits" },
-              { field: "Fragment Offset", description: "Indicates the position of the fragment in the original packet", size: "13 bits" },
-              { field: "TTL (Time to Live)", description: "Limits the packet's lifetime to prevent it from circulating indefinitely", size: "8 bits" },
-              { field: "Protocol", description: "Indicates the next level protocol (e.g., TCP, UDP)", size: "8 bits" },
-              { field: "Header Checksum", description: "A checksum for error-checking the header", size: "16 bits" },
-              { field: "Source Address", description: "The IP address of the sender", size: "32 bits" },
-              { field: "Destination Address", description: "The IP address of the intended recipient", size: "32 bits" }
+              { field: "Version", description: "- Indicates the IP version (IPv4)", size: "4 bits" },
+              { field: "IHL (Internet Header Length)", description: "- Specifies the length of the header in 32-bit words", size: "4 bits" },
+              { field: "Type of Service", description: "- Specifies the quality of service parameters", size: "8 bits" },
+              { field: "Total Length", description: "- Length of the entire packet (header + data) in bytes", size: "16 bits" },
+              { field: "Identification", description: "- Unique identifier for the packet, used for fragmentation and reassembly", size: "16 bits" },
+              { field: "Flags", description: "- Control flags for fragmentation (e.g., 'Don't Fragment')", size: "3 bits" },
+              { field: "Fragment Offset", description: "- Indicates the position of the fragment in the original packet", size: "13 bits" },
+              { field: "TTL (Time to Live)", description: "- Limits the packet's lifetime to prevent it from circulating indefinitely", size: "8 bits" },
+              { field: "Protocol", description: "- Indicates the next level protocol (e.g., TCP, UDP)", size: "8 bits" },
+              { field: "Header Checksum", description: "- A checksum for error-checking the header", size: "16 bits" },
+              { field: "Source Address", description: "- The IP address of the sender", size: "32 bits" },
+              { field: "Destination Address", description: "- The IP address of the intended recipient", size: "32 bits" }
             ].map(({ field, description, size }) => (
-              <div className="flex justify-between border-b pb-2" key={field}>
+              <div className="flex flex-col sm:flex-row justify-between border-b pb-2" key={field}>
                 <div className="font-medium text-gray-800">{field}</div>
                 <div className="text-gray-600">{description}</div>
                 <div className="text-gray-500">{size}</div>
@@ -38,22 +38,22 @@ const sections = [
             ))}
           </div>
         </div>
-
+  
         {/* IPv6 Header Fields */}
-        <div className="bg-green-50 p-6 rounded-xl shadow space-y-4">
+        <div className=" rounded-xl  space-y-4">
           <h3 className="text-2xl font-bold text-green-800">IPv6 Header Key Fields</h3>
           <div className="space-y-4">
             {[
-              { field: "Version", description: "Indicates the IP version (IPv6)", size: "4 bits" },
-              { field: "Traffic Class", description: "Used for quality of service (QoS)", size: "8 bits" },
-              { field: "Flow Label", description: "Used to identify packets that require special handling", size: "20 bits" },
-              { field: "Payload Length", description: "Length of the payload (data) following the header in bytes", size: "16 bits" },
-              { field: "Next Header", description: "Indicates the type of the next header (e.g., TCP, UDP, ICMPv6)", size: "8 bits" },
-              { field: "Hop Limit", description: "Limits the number of hops a packet can take (similar to TTL in IPv4)", size: "8 bits" },
-              { field: "Source Address", description: "The IP address of the sender", size: "128 bits" },
-              { field: "Destination Address", description: "The IP address of the intended recipient", size: "128 bits" }
+              { field: "Version", description: "- Indicates the IP version (IPv6)", size: "4 bits" },
+              { field: "Traffic Class", description: "- Used for quality of service (QoS)", size: "8 bits" },
+              { field: "Flow Label", description: "- Used to identify packets that require special handling", size: "20 bits" },
+              { field: "Payload Length", description: "- Length of the payload (data) following the header in bytes", size: "16 bits" },
+              { field: "Next Header", description: "- Indicates the type of the next header (e.g., TCP, UDP, ICMPv6)", size: "8 bits" },
+              { field: "Hop Limit", description: "- Limits the number of hops a packet can take (similar to TTL in IPv4)", size: "8 bits" },
+              { field: "Source Address", description: "- The IP address of the sender", size: "128 bits" },
+              { field: "Destination Address", description: "- The IP address of the intended recipient", size: "128 bits" }
             ].map(({ field, description, size }) => (
-              <div className="flex justify-between border-b pb-2" key={field}>
+              <div className="flex flex-col sm:flex-row justify-between border-b pb-2" key={field}>
                 <div className="font-medium text-gray-800">{field}</div>
                 <div className="text-gray-600">{description}</div>
                 <div className="text-gray-500">{size}</div>
@@ -61,7 +61,7 @@ const sections = [
             ))}
           </div>
         </div>
-
+  
         {/* Key Differences */}
         <div className="bg-indigo-50 p-6 rounded-xl shadow space-y-4">
           <h3 className="text-2xl font-bold text-indigo-800">Key Differences Between IPv4 and IPv6 Headers</h3>
