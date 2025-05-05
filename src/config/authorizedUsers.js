@@ -8,6 +8,7 @@ const authorizedUsers = [
   'thilak@nmamit.in',
   'srujan@nmamit.in',
   'ash@nmamit.in',
+  'balaji@nmamit.in',
   // Add more authorized users as needed
 ];
 
