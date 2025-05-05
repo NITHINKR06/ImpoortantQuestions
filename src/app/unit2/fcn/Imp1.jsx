@@ -4,7 +4,7 @@ const sections = [
   {
     title: '',
     content: (
-      <div className="max-w-5xl mx-auto p-6 space-y-8">
+      <div className="max-w-5xl mx-auto space-y-8">
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center">IPv4 vs. IPv6 Headers</h2>
 
         {/* Introduction */}
@@ -80,7 +80,7 @@ const sections = [
   {
     title: '2. IP Address Classes',
     content: (
-      <div className="max-w-5xl mx-auto p-6 space-y-8">
+      <div className="max-w-5xl mx-auto space-y-8">
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center">IP Address Classes</h2>
         <p className="text-gray-700 text-center max-w-3xl mx-auto">
           IP addresses are categorized into different classes based on their leading bits and address ranges.
@@ -167,7 +167,7 @@ const sections = [
   {
     title: '3. Error Control and Flow Control',
     content: (
-      <div className="max-w-4xl mx-auto p-6  space-y-10">
+      <div className="max-w-4xl mx-auto  space-y-10">
         <h2 className="text-3xl font-extrabold text-blue-700 text-center">Error Control and Flow Control</h2>
 
         {/* Error Control Section */}
@@ -241,7 +241,7 @@ const sections = [
   {
     title: '4. Short Notes',
     content: (
-      <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="max-w-4xl mx-auto space-y-8">
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center">Short Notes on Networking Concepts</h2>
 
         {/* NAT */}
@@ -305,7 +305,7 @@ const sections = [
   {
     title: '5. Three-way Handshake in TCP',
     content: (
-      <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-2xl space-y-8">
+      <div className="max-w-3xl mx-auto space-y-8">
         {/* Overview */}
         <div className="mb-8">
           <h3 className="text-2xl font-semibold text-gray-800 mb-3 border-b pb-1">1. Overview of TCP Connection Establishment</h3>
@@ -366,7 +366,7 @@ const sections = [
   {
     title: 'Crash Recovery in Transport Protocols',
     content: (
-      <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-2xl space-y-8">
+      <div className="max-w-3xl mx-auto space-y-8">
         {/* Overview */}
         <div className="mb-8">
           <h3 className="text-2xl font-semibold text-gray-800 mb-3 border-b pb-1">1. Overview of Crash Recovery</h3>
@@ -424,7 +424,7 @@ const sections = [
   {
     title: '6. Applications in UDP',
     content: (
-      <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-2xl space-y-8">
+      <div className="max-w-3xl mx-auto space-y-8">
         {/* Overview */}
         <div className="mb-8">
           <h3 className="text-2xl font-semibold text-gray-800 mb-3 border-b pb-1">1. Overview of UDP</h3>
@@ -486,7 +486,7 @@ const sections = [
   {
     title: '7. Error Control and Flow Control (Expanded)',
     content: (
-      <div className="max-w-3xl mx-auto p-6">
+      <div className="max-w-3xl mx-auto">
 
       {/* Error Control Section */}
       <div className="mb-8">
@@ -564,7 +564,7 @@ const sections = [
   {
     title: '8. OSPF and BGP',
     content: (
-      <div className="max-w-3xl mx-auto p-6">
+      <div className="max-w-3xl mx-auto">
 
         {/* OSPF Section */}
         <div className="mb-8">
@@ -647,7 +647,7 @@ const sections = [
   {
     title: '9. CIDR (Classless Interdomain Routing)',
     content: (
-      <div className="max-w-3xl mx-auto p-6">
+      <div className="max-w-3xl mx-auto">
         <p className="text-lg text-gray-800 font-semibold leading-relaxed">
           <span className="text-blue-500">CIDR (Classless Interdomain Routing)</span> uses the notation <span className="font-mono">IP/Prefix</span> (e.g., <span className="font-mono">192.168.1.0/24</span>) to denote an IP address and its associated network prefix, providing efficient IP allocation and improved routing flexibility compared to classful addressing.
         </p>
@@ -695,7 +695,7 @@ const sections = [
   {
     title: '10. Subnet Masks',
     content: (
-      <div className="max-w-3xl mx-auto p-6">
+      <div className="max-w-3xl mx-auto">
 
   
         <p className="mb-4">
