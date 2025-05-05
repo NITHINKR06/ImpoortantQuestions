@@ -170,7 +170,7 @@ export default function Daa({ searchQuery = "" }) {
       </div>
       
       {/* Q&A Section with bullet points */}
-      <Section 
+      {/* <Section 
         title="Frequently Asked Questions" 
         content={
           <div className="space-y-4">
@@ -184,7 +184,7 @@ export default function Daa({ searchQuery = "" }) {
             ))}
           </div>
         } 
-      />
+      /> */}
     </main>
   );
 }
