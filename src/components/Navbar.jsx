@@ -197,7 +197,7 @@ const Navbar = () => {
           {isOpen && (
             <div
               ref={mobileMenuRef}
-              className="absolute z-50 inset-x-0 top-16 bg-white shadow-lg dark:bg-gray-900 transition-all duration-300 ease-in-out"
+              className="absolute z-50 inset-x-0 top-24 bg-white shadow-lg dark:bg-gray-900 transition-all duration-300 ease-in-out"
               style={{ maxHeight: '80vh', overflow: 'auto' }}
             >
               <div className="container mx-auto px-4 py-3">
@@ -489,6 +489,7 @@ const Navbar = () => {
                     </button>
                   )}
                 </div>
+                
               </div>
             </div>
           </div>

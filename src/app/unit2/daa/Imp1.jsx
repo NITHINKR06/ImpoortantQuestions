@@ -54,16 +54,6 @@ export default function Daa({ searchQuery = "" }) {
       alt: "First image description",
       description: "This is the description for the first image. It provides context and details about what's shown in the image."
     },
-    {
-      imageUrl: "/api/placeholder/600/400",
-      alt: "Second image description",
-      description: "This is the description for the second image. It explains what this specific image represents."
-    },
-    {
-      imageUrl: "/api/placeholder/600/400",
-      alt: "Third image description",
-      description: "This is the description for the third image. It contains information related to the visual content."
-    }
   ];
 
   // Enhanced qaData with bullet points
@@ -78,26 +68,6 @@ export default function Daa({ searchQuery = "" }) {
         "To improve understanding through multiple formats"
       ]
     },
-    {
-      question: "How can I use these materials?",
-      answer: "These materials can be used for educational purposes, reference, or to gain a better understanding of the presented topics.",
-      bulletPoints: [
-        "As a learning resource for students and educators",
-        "For reference during related projects or research",
-        "To share knowledge with colleagues or classmates",
-        "As supplementary materials for presentations"
-      ]
-    },
-    {
-      question: "Where can I find more information?",
-      answer: "Additional information can be found in the resources section or by contacting our support team.",
-      bulletPoints: [
-        "Check the Resources tab for downloadable PDFs",
-        "Visit our documentation portal at docs.example.com",
-        "Email support@example.com for specific questions",
-        "Join our monthly webinars for advanced topics"
-      ]
-    }
   ];
 
   // Filter imagesData based on searchQuery
@@ -152,13 +122,6 @@ export default function Daa({ searchQuery = "" }) {
         } 
       />
 
-      {/* Visualization Section */}
-      <Section 
-        title="Insertion Sort Visualization" 
-        content={
-          <p>Below is a visualization of the Insertion Sort algorithm. You can interact with it to see how the algorithm works step by step.</p>
-        }
-      />
       <InsertionSortVisualizer/>
 
     </main>
