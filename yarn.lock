@@ -5784,6 +5784,11 @@ react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-parallax-tilt@^1.7.294:
+  version "1.7.294"
+  resolved "https://registry.npmjs.org/react-parallax-tilt/-/react-parallax-tilt-1.7.294.tgz#ca96d97990ccc62f2be229b1c87de444dd672949"
+  integrity sha512-6nWoCFaplcsdIKUrIprSNvbs7iC+9+9sj8LxrVq9WOXZo1V4J0oAjKwOLEn06z9C0hRZUVW2+j6/qd1XenXXMw==
+
 react-pdf@^9.2.1:
   version "9.2.1"
   resolved "https://registry.npmjs.org/react-pdf/-/react-pdf-9.2.1.tgz#35294da1232d310243ffe5e54f39281e6c98d8d4"

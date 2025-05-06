@@ -57,6 +57,7 @@ export default function Daa({ searchQuery = "" }) {
   // ];
 
   // Enhanced qaData with bullet points
+  
   const qaData = [
     {
       question: "What is the main purpose of this section?",
@@ -90,7 +91,7 @@ export default function Daa({ searchQuery = "" }) {
     }
   ];
 
-    const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
     
     // Handle window resize
     useEffect(() => {
