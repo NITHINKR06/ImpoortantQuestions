@@ -45,7 +45,7 @@ export default function SubjectsPage() {
           transition={{ duration: 0.8 }}
           className="text-4xl sm:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
         >
-          Pick Your Subject
+          Pick Your Subject from Unit 1
         </motion.h1>
         <p className="text-gray-500 dark:text-gray-300 mt-3">
           Dive into detailed notes and resources for each topic.

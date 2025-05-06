@@ -109,5 +109,5 @@ To contribute:
 4. Push to the branch (`git push origin feature-name`)  
 5. Open a Pull Request 
 
-### for now no access to the repository for the public. If you are interested in contributing, please contact me.
+### For now no access to the repository for the public. If you are interested in contributing, please contact me.
 
