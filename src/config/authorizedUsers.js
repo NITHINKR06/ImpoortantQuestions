@@ -3,12 +3,12 @@ const authorizedUsers = [
   'admin@iques.com',
   'user1@iques.com',
   'user2@iques.com',
-  'shravya@nmamit.in',
-  'nithin@nmamit.in',
-  'thilak@nmamit.in',
-  'srujan@nmamit.in',
+  'shravya06@nmamit.in',
+  'nithin06@nmamit.in',
+  'k@nmamit.in',
+  '@.in',
   'ash@nmamit.in',
-  'balaji@nmamit.in',
+  '@nmt.in',
   // Add more authorized users as needed
 ];
 
