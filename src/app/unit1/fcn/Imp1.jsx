@@ -1,4 +1,149 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+
+export default function Imp1() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('all');
+  const [expandedSection, setExpandedSection] = useState(null);
+
+  // Group sections by category
+  const categories = {
+    all: "All Topics",
+    routing: "Routing Protocols",
+    switching: "Switching Techniques",
+    congestion: "Congestion Control",
+    services: "Network Services"
+  };
+
+  // Categorized sections
+  const categorizedSections = {
+    switching: [0],
+    routing: [1, 3, 4, 5, 9, 10],
+    congestion: [6, 7],
+    services: [2, 8]
+  };
+
+  // Function to get sections for active tab
+  const getFilteredSections = () => {
+    let sectionIndices = activeTab === 'all' 
+      ? Array.from({ length: sections.length }, (_, i) => i)
+      : categorizedSections[activeTab];
+      
+    return sections
+      .filter((_, index) => sectionIndices.includes(index))
+      .filter(section => 
+        section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        JSON.stringify(section.content.props).toLowerCase().includes(searchQuery.toLowerCase())
+      );
+  };
+  
+  const toggleSection = (index) => {
+    setExpandedSection(expandedSection === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen">
+      {/* Header
+      <header className="bg-indigo-900 text-white py-6 shadow-xl">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl font-bold text-center">Computer Networking</h1>
+          <p className="text-indigo-200 text-center mt-2">Essential concepts and techniques</p>
+        </div>
+      </header> */}
+
+      {/* Search and Navigation */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+          <div className="relative w-full md:w-96">
+            <input
+              type="text"
+              placeholder="Search topics..."
+              className="w-full px-4 py-3 pl-12 rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 absolute left-3 top-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          
+          <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center">
+            {Object.entries(categories).map(([key, label]) => (
+              <button
+                key={key}
+                className={`px-4 py-2 rounded-full text-sm border border-blue-900 transition-colors ${
+                  activeTab === key 
+                    ? 'bg-indigo-600 text-white' 
+                    : 'bg-white text-indigo-800 hover:bg-indigo-100'
+                }`}
+                onClick={() => setActiveTab(key)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 pb-16">
+        <div className="grid grid-cols-1 gap-8">
+          {getFilteredSections().length > 0 ? (
+            getFilteredSections().map((section, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300"
+              >
+                <div 
+                  className="flex justify-between items-center p-6 bg-gradient-to-r from-indigo-600 to-blue-700 text-white cursor-pointer"
+                  onClick={() => toggleSection(index)}
+                >
+                  <h2 className="text-2xl font-bold">{ index + 1 }. {section.title}</h2>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className={`h-6 w-6 transition-transform ${expandedSection === index ? 'transform rotate-180' : ''}`} 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    fill="none"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                {expandedSection === index && (
+                  <div className="p-6 bg-white">
+                    {section.content}
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-12">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="mt-4 text-lg text-gray-600">No topics found matching your search.</p>
+              <button 
+                className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                onClick={() => {setSearchQuery(''); setActiveTab('all');}}
+              >
+                Reset filters
+              </button>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Footer
+      <footer className="bg-indigo-900 text-indigo-200 py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p>© {new Date().getFullYear()} Computer Networking Guide</p>
+          <p className="mt-2 text-sm">A comprehensive resource for networking concepts</p>
+        </div>
+      </footer> */}
+    </div>
+  );
+};
+
 
 const sections = [
 
@@ -735,27 +880,3 @@ const sections = [
   }
  
 ];
-
-export default function NetworkTopics({ searchQuery = "" }) {
-  const filteredSections = sections.filter(section =>
-    section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    section.content.props.children.toString().toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  return (
-    <main className="space-y-12 p-6 md:p-12">
-      {filteredSections.map((section, index) => (
-        <Section key={index} title={section.title} content={section.content} />
-      ))}
-    </main>
-  );
-}
-
-const Section = ({ title, content }) => {
-  return (
-    <section className="bg-white rounded-2xl shadow-2xl p-8 transition-transform ">
-      <h2 className="text-3xl font-bold text-indigo-800 mb-6">{title}</h2>
-      <div>{content}</div>
-    </section>
-  );
-};

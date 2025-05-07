@@ -39,44 +39,6 @@ const SEPMImportantQuestions = () => {
   return (
     <ProtectedPage>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
-      {/* Fixed Header */}
-      <header className="text-black py-6 shadow-md">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl font-extrabold tracking-wide">
-            FCN Important Questions
-          </h1><br />
-
-          {/* Buttons to switch between pages */}
-          <div className="mb-6 flex flex-wrap items-center">
-            <button
-              className={buttonClasses("imp1")}
-              onClick={() => setActiveComponent("imp1")}
-            >
-              Important
-            </button>
-            {/* <button
-              className={buttonClasses("imp2")}
-              onClick={() => setActiveComponent("imp2")}
-            >
-              Videos Uint-2
-            </button>
-            <button
-              className={buttonClasses("imp3")}
-              onClick={() => setActiveComponent("imp3")}
-            >
-              Images
-            </button> */}
-            {/* Search input */}
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="ml-auto px-3 py-2 border border-indigo-700 rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-        </div>
-      </header>
 
       {/* Active Component Content */}
       <div className="max-w-6xl mx-auto px-6 py-10">
