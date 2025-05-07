@@ -5,7 +5,7 @@ import Imp2 from './Imp2.jsx';
 import Imp3 from './Imp3.jsx';
 import ProtectedPage from '../../ProtectedPage.jsx';
 
-const SEPMImportantQuestions = () => {
+export default function FcnImportantQuestions () {
   // State to track the active component
   const [activeComponent, setActiveComponent] = useState("imp1");
 
@@ -56,4 +56,3 @@ const SEPMImportantQuestions = () => {
   );
 };
 
-export default SEPMImportantQuestions;
