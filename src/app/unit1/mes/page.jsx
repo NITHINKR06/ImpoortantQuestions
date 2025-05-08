@@ -5,7 +5,7 @@ import Imp2 from './Imp2.jsx';
 import ImageGallery from './Imp3.jsx';
 import ProtectedPage from '../../ProtectedPage.jsx';
 
-const SEPMImportantQuestions = () => {
+export default function MesImportantQuestions (){
   // State to track the active component
   const [activeComponent, setActiveComponent] = useState("imp1");
 
@@ -52,7 +52,7 @@ const SEPMImportantQuestions = () => {
                 className={buttonClasses("imp1")}
                 onClick={() => setActiveComponent("imp1")}
               >
-                Theory
+                Mse 1
               </button>
               <button
                 className={buttonClasses("imp2")}
@@ -94,4 +94,4 @@ const SEPMImportantQuestions = () => {
   );
 };
 
-export default SEPMImportantQuestions;
+
