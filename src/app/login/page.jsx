@@ -1,30 +1,35 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuth } from '../../components/auth/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useAuth }          from '../../components/auth/AuthContext';
+import { useRouter }        from 'next/navigation';
 import { HiMail, HiLockClosed } from 'react-icons/hi';
-import UnauthorizedModal from '../../components/UnauthorizedModal';
-import { toast } from 'react-toastify';
+import UnauthorizedModal    from '../../components/UnauthorizedModal';
+import { toast }            from 'react-toastify';
 
 export default function LoginPage() {
   const [username, setUserName] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [error, setError]       = useState('');
   const { login } = useAuth();
-  const router = useRouter();
+  const router    = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
-      await login(username);
+      await login(username.trim());
       router.push('/');
     } catch (err) {
-      const message = err?.message || 'Failed to login. Please check your credentials.';
-      if (message === 'No access' || message === 'User already logged in on another device') {
-        toast.error(message);
+      console.error('Login error:', err);
+      const msg = err.message || 'Login failed. Try again.';
+      if (msg === 'No access') {
         setShowModal(true);
+      } else if (msg === 'User already logged in on another device') {
+        toast.error(msg);
       } else {
-        toast.error(message);
+        // inline under the input
+        setError(msg);
       }
     }
   };
@@ -32,6 +37,7 @@ export default function LoginPage() {
   return (
     <>
       {showModal && <UnauthorizedModal />}
+
       <div className="flex mt-14 items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <div className="text-center mb-8">
@@ -44,8 +50,8 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Authenticated username
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                Username or Email
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -53,26 +59,31 @@ export default function LoginPage() {
                 </div>
                 <input
                   id="username"
-                  name="username"
                   type="text"
                   autoComplete="username"
                   required
-                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="Enter your username"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm
+                             focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Enter your username or email"
                   value={username}
                   onChange={(e) => setUserName(e.target.value)}
                 />
               </div>
+              {error && (
+                <p className="mt-2 text-sm text-red-600">
+                  {error}
+                </p>
+              )}
             </div>
 
-            <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Sign in
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md
+                         shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700
+                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Sign in
+            </button>
           </form>
         </div>
       </div>
