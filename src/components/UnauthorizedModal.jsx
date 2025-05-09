@@ -1,9 +1,11 @@
+'use client';
+
 import { motion } from "framer-motion";
 import { FaLock } from "react-icons/fa";
 
 export default function UnauthorizedModal() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -17,7 +19,7 @@ export default function UnauthorizedModal() {
         </div>
         <p className="text-red-600 mb-4">
           You are not authorized to access the main content of this website. Please contact the administrator
-          to request access or use the contact information below to get in touch.
+          to request access.
         </p>
         <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
           <a
