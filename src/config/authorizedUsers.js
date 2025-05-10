@@ -4,6 +4,7 @@ const authorizedUsers = [
   'shravya06',
   'nithin06@nmamit.in',
   'nithin06',
+  '123321',
   // Add more authorized users as needed
 ];
 
