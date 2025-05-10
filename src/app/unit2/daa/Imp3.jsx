@@ -1,9 +1,9 @@
-import React from 'react'
+  import React from 'react'
 
-export default function Imp3() {
-  return (
-    <div>
-        No more...!
-    </div>
-  )
-}
+  export default function Imp3() {
+    return (
+      <div>
+          No more...!
+      </div>
+    )
+  }
