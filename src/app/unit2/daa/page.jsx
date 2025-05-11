@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Imp1 from './Imp1.jsx';
 import Imp2 from './Imp2.jsx';
+import Imp3 from './Imp3.jsx';
 import ProtectedPage from '../../ProtectedPage.jsx';
 
 const SEPMImportantQuestions = () => {
@@ -18,6 +19,8 @@ const SEPMImportantQuestions = () => {
         return <Imp1 searchQuery={searchQuery} />;
       case "imp2":
         return <Imp2 searchQuery={searchQuery} />;
+      case "imp3":
+        return <Imp3 searchQuery={searchQuery} />;
       default:
         return <Imp1 searchQuery={searchQuery} />;
     }
@@ -56,6 +59,12 @@ const SEPMImportantQuestions = () => {
               onClick={() => setActiveComponent("imp2")}
             >
               Algorithm
+            </button>
+            <button
+              className={buttonClasses("imp3")}
+              onClick={() => setActiveComponent("imp3")}
+            >
+              Answers
             </button>
             {/* Search input */}
             <input
