@@ -41,7 +41,7 @@ export default function Imp1() {
           <div className="flex items-center justify-between p-3 md:p-4 bg-gray-300 text-black">
             <div className="flex items-center">
               <File className="mr-2" size={isMobile ? 18 : 20} />
-              <h2 className="text-lg md:text-xl font-semibold">DAA Unit 3 Part 1</h2>
+              <h2 className="text-lg md:text-xl font-semibold">DAA Unit 1 </h2>
             </div>
             <div className="flex items-center space-x-1 md:space-x-2">
               <button 
@@ -80,7 +80,7 @@ export default function Imp1() {
           <div className="flex items-center justify-between p-3 md:p-4 bg-gray-300 text-black">
             <div className="flex items-center">
               <File className="mr-2" size={isMobile ? 18 : 20} />
-              <h2 className="text-lg md:text-xl font-semibold">DAA Unit 3 Part 2</h2>
+              <h2 className="text-lg md:text-xl font-semibold">DAA</h2>
             </div>
             <div className="flex items-center space-x-1 md:space-x-2">
               <button 
