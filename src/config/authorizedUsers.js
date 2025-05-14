@@ -7,6 +7,7 @@ const authorizedUsers = [
   '123321',
   'thilak',
   'srujan',
+  'balaji',
   'pratheek',
   // Add more authorized users as needed
 ];
