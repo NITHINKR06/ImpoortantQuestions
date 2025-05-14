@@ -38,7 +38,7 @@ const SEPMImportantQuestions = () => {
 
   return (
     <ProtectedPage>
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className=" bg-gradient-to-b from-gray-50 to-gray-100">
         {/* Fixed Header */}
         <header className="text-black py-6 shadow-xs">
           <div className="max-w-6xl mx-auto px-6">
