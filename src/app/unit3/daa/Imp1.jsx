@@ -1,36 +1,10 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { File, ChevronLeft, ChevronRight, Maximize, Minimize, Download, Menu, X } from 'lucide-react';
 
 export default function Imp1() {
   const pdfPath = "/DAA_UNIT_5.pdf";
   const pdfPath1 = "/Bellman_Ford.pdf";
-
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      title: "Pythagorean Theorem",
-      src: "/api/placeholder/400/300",
-      description: "Visual representation of a² + b² = c² showing the relationship in a right triangle."
-    },
-    {
-      id: 2,
-      title: "Unit Circle",
-      src: "/api/placeholder/400/300",
-      description: "Key angles and coordinates on the unit circle for trigonometric functions."
-    },
-    {
-      id: 3,
-      title: "Calculus Fundamentals",
-      src: "/api/placeholder/400/300",
-      description: "Illustration of derivative as the slope of a tangent line."
-    },
-    {
-      id: 4,
-      title: "Linear Algebra Vectors",
-      src: "/api/placeholder/400/300",
-      description: "Vector operations and transformations in 2D space."
-    }
-  ]);
 
   const [pdfFullscreen, setPdfFullscreen] = useState(false);
   const [pdfFullscreen1, setPdfFullscreen1] = useState(false);
@@ -48,14 +22,6 @@ export default function Imp1() {
       window.removeEventListener('resize', checkIfMobile);
     };
   }, []);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   const handleDownloadPDF = (href, filename) => {
     const link = document.createElement('a');
