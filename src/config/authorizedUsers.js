@@ -4,7 +4,7 @@ const authorizedUsers = [
   'shravya',
   'nithin@nmamit.in',
   'nithin06',
-  '123321',
+  '123_321',
   'thilak',
   'srujan',
   'balaji',
