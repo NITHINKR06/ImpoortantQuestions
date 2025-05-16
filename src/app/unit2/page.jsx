@@ -11,10 +11,10 @@ import {
 import { motion } from 'framer-motion';
 
 const subjectIcons = {
-  Maths: { icon: HiOutlineChartBar, color: 'bg-gradient-to-tr from-indigo-500 to-purple-500' },
+  // Maths: { icon: HiOutlineChartBar, color: 'bg-gradient-to-tr from-indigo-500 to-purple-500' },
   FCN: { icon: HiOutlineLibrary, color: 'bg-gradient-to-tr from-green-400 to-emerald-500' },
   MES: { icon: HiCog, color: 'bg-gradient-to-tr from-yellow-400 to-amber-500' },
-  DAA: { icon: HiOutlineCode, color: 'bg-gradient-to-tr from-pink-500 to-rose-500' },
+  // DAA: { icon: HiOutlineCode, color: 'bg-gradient-to-tr from-pink-500 to-rose-500' },
   SEPM: { icon: HiOutlineDocumentText, color: 'bg-gradient-to-tr from-blue-500 to-cyan-500' }
 };
 
