@@ -91,10 +91,10 @@ const Navbar = () => {
   };
 
   const subjectIcons = {
-    'Maths': <HiOutlineChartBar className="h-5 w-5" />,
+    // 'Maths': <HiOutlineChartBar className="h-5 w-5" />,
     'FCN':   <HiOutlineLibrary className="h-5 w-5" />,
     'MES':   <HiCog className="h-5 w-5" />,
-    'DAA':   <HiOutlineCode className="h-5 w-5" />,
+    // 'DAA':   <HiOutlineCode className="h-5 w-5" />,
     'SEPM':  <HiOutlineDocumentText className="h-5 w-5" />
   };
 
@@ -107,10 +107,10 @@ const Navbar = () => {
       name: 'Unit 1',
       icon: <HiAcademicCap className="h-5 w-5" />,
       dropdown: [
-        { name: 'Maths', href: '/unit1/maths', icon: subjectIcons.Maths },
+        // { name: 'Maths', href: '/unit1/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit1/fcn',   icon: subjectIcons.FCN },
         { name: 'MES',   href: '/unit1/mes',   icon: subjectIcons.MES },
-        { name: 'DAA',   href: '/unit1/daa',   icon: subjectIcons.DAA },
+        // { name: 'DAA',   href: '/unit1/daa',   icon: subjectIcons.DAA },
         { name: 'SEPM',  href: '/unit1/sepm',  icon: subjectIcons.SEPM },
       ]
     },
@@ -118,10 +118,10 @@ const Navbar = () => {
       name: 'Unit 2',
       icon: <HiAcademicCap className="h-5 w-5" />,
       dropdown: [
-        { name: 'Maths', href: '/unit2/maths', icon: subjectIcons.Maths },
+        // { name: 'Maths', href: '/unit2/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit2/fcn',   icon: subjectIcons.FCN },
         { name: 'MES',   href: '/unit2/mes',   icon: subjectIcons.MES },
-        { name: 'DAA',   href: '/unit2/daa',   icon: subjectIcons.DAA },
+        // { name: 'DAA',   href: '/unit2/daa',   icon: subjectIcons.DAA },
         { name: 'SEPM',  href: '/unit2/sepm',  icon: subjectIcons.SEPM },
       ]
     },
@@ -129,10 +129,10 @@ const Navbar = () => {
       name: 'Unit 3',
       icon: <HiAcademicCap className="h-5 w-5" />,
       dropdown: [
-        { name: 'Maths', href: '/unit3/maths', icon: subjectIcons.Maths },
+        // { name: 'Maths', href: '/unit3/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit3/fcn',   icon: subjectIcons.FCN },
         { name: 'MES',   href: '/unit3/mes',   icon: subjectIcons.MES },
-        { name: 'DAA',   href: '/unit3/daa',   icon: subjectIcons.DAA },
+        // { name: 'DAA',   href: '/unit3/daa',   icon: subjectIcons.DAA }, 
         { name: 'SEPM',  href: '/unit3/sepm',  icon: subjectIcons.SEPM },
       ]
     },
