@@ -9,6 +9,7 @@ const authorizedUsers = [
   'srujan',
   'balaji',
   'pratheek',
+  '',
   // Add more authorized users as needed
 ];
 

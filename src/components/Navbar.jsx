@@ -109,7 +109,7 @@ const Navbar = () => {
       dropdown: [
         // { name: 'Maths', href: '/unit1/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit1/fcn',   icon: subjectIcons.FCN },
-        { name: 'MES',   href: '/unit1/mes',   icon: subjectIcons.MES },
+        // { name: 'MES',   href: '/unit1/mes',   icon: subjectIcons.MES },
         // { name: 'DAA',   href: '/unit1/daa',   icon: subjectIcons.DAA },
         { name: 'SEPM',  href: '/unit1/sepm',  icon: subjectIcons.SEPM },
       ]
@@ -120,7 +120,7 @@ const Navbar = () => {
       dropdown: [
         // { name: 'Maths', href: '/unit2/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit2/fcn',   icon: subjectIcons.FCN },
-        { name: 'MES',   href: '/unit2/mes',   icon: subjectIcons.MES },
+        // { name: 'MES',   href: '/unit2/mes',   icon: subjectIcons.MES },
         // { name: 'DAA',   href: '/unit2/daa',   icon: subjectIcons.DAA },
         { name: 'SEPM',  href: '/unit2/sepm',  icon: subjectIcons.SEPM },
       ]
@@ -131,7 +131,7 @@ const Navbar = () => {
       dropdown: [
         // { name: 'Maths', href: '/unit3/maths', icon: subjectIcons.Maths },
         { name: 'FCN',   href: '/unit3/fcn',   icon: subjectIcons.FCN },
-        { name: 'MES',   href: '/unit3/mes',   icon: subjectIcons.MES },
+        // { name: 'MES',   href: '/unit3/mes',   icon: subjectIcons.MES },
         // { name: 'DAA',   href: '/unit3/daa',   icon: subjectIcons.DAA }, 
         { name: 'SEPM',  href: '/unit3/sepm',  icon: subjectIcons.SEPM },
       ]
